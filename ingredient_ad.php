@@ -17,13 +17,13 @@
             <a href="ingredient_ad.php">Ingredient</a>
             <a href="meal_ad.php">Meal</a>
         </nav>
-        <div class="admin">
-            <!-- Hidden checkbox to control the toggle effect -->
-            <input type="checkbox" id="toggle" class="toggle-checkbox" style="display: none;">
-            <label for="toggle" class="admin-button">Admin_1 ▼</label>
-            <!-- Dropdown content -->
-            <a href="homepage.html" class="dropdown-content">Log-out</a>
-        </div>
+        <!-- <div class="admin">
+        <div class="admin-dropdown">
+            <button class="admin-btn">Admin_1 ▼</button>
+            <div class="dropdown-content">
+                <a href="homepage.html">Log-out</a>
+            </div>
+        </div> -->
     </div>
 
     <div class="topic">

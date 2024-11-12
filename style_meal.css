@@ -54,51 +54,50 @@ body {
     background-color: rgba(255, 255, 255, 0.3);
 }
 
+/* Admin Dropdown */
+.admin-dropdown {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.admin-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    right: 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.dropdown-content a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.admin-dropdown:hover .dropdown-content {
+    display: block;
+}
+
 .topic h1{
     font-size: 2em;
     text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
     padding: 10px 20px;
     margin: 10px;
-}
-
-
-/* Main container styles */
-.admin {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-}
-
-/* Button styles */
-.admin-button {
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    font-size: 1em;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-/* Dropdown link hidden by default */
-.dropdown-content {
-    display: none;
-    margin-top: 5px;
-    padding: 5px 10px;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 1em;
-}
-
-/* Show the dropdown content when the checkbox is checked */
-.toggle-checkbox:checked + .admin-button + .dropdown-content {
-    display: block;
 }
 
 /* Content Section */

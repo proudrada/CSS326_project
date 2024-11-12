@@ -54,6 +54,44 @@ body {
     background-color: rgba(255, 255, 255, 0.3);
 }
 
+/* Admin Dropdown */
+.admin-dropdown {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.admin-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    right: 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.dropdown-content a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.admin-dropdown:hover .dropdown-content {
+    display: block;
+}
+
 .topic h1{
     font-size: 2em;
     text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
