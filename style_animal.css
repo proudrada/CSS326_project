@@ -1,0 +1,145 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e9b166;
+    color: #333;
+}
+
+/* Banner */
+.banner {
+    background-image: url('bg_animal.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: white;
+    padding: 20px;
+    height: 40vh;
+    position: relative;
+    justify-content: center; /* Centers content vertically */
+    align-items: center; /* Centers content horizontally */
+}
+
+.banner h1 {
+    font-size: 2em;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.banner nav {
+    display: flex;
+    gap: 15px; /* Space between navigation links */
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.banner nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1em;
+    padding: 8px 15px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1); /* Light semi-transparent */
+    transition: background-color 0.3s ease;
+}
+
+.banner nav a:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.topic h1{
+    font-size: 2em;
+    text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 10px 20px;
+    margin: 10px;
+}
+
+/* Cards Container */
+.cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 20px;
+    /* max-width: 1200px; */
+    width: 1000px;
+    margin: 0 auto;
+}
+
+/* Card Styles */
+.card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 290px;
+    box-sizing: border-box;
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Profile Image Styles */
+.profile-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0; /* Remove margin to remove gap */
+}
+
+/* Card Content */
+.card h2 {
+    font-size: 1.5em;
+    margin: 10px 0;
+}
+
+.card p {
+    font-size: 0.9em;
+    margin: 5px 0;
+    color: #666;
+}
+
+/* Edit Icon */
+.edit-icon {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: #666;
+    font-size: 1.2em;
+    text-decoration: none;
+}
+
+.edit-icon:hover {
+    color: #333;
+}
+
+.add-button-container {
+    margin-top: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.add-button {
+    background-color: #89540d;
+    color: white;
+    border: none;
+    font-size: 2em;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.add-button:hover {
+    background-color: #555;
+}

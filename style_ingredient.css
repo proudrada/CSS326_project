@@ -1,0 +1,195 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #9bb145;
+    color: #333;
+}
+
+/* Banner */
+.banner {
+    background-image: url('bg_ingredient.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: white;
+    padding: 20px;
+    height: 40vh;
+    position: relative;
+    justify-content: center; /* Centers content vertically */
+    align-items: center; /* Centers content horizontally */
+}
+
+.banner h1 {
+    font-size: 2em;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.banner nav {
+    display: flex;
+    gap: 15px; /* Space between navigation links */
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.banner nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1em;
+    padding: 8px 15px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1); /* Light semi-transparent */
+    transition: background-color 0.3s ease;
+}
+
+.banner nav a:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.topic h1{
+    font-size: 2em;
+    text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 10px 20px;
+    margin: 10px;
+}
+
+
+/* Main container styles */
+.admin {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+/* Button styles */
+.admin-button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Dropdown link hidden by default */
+.dropdown-content {
+    display: none;
+    margin-top: 5px;
+    padding: 5px 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1em;
+}
+
+/* Show the dropdown content when the checkbox is checked */
+.toggle-checkbox:checked + .admin-button + .dropdown-content {
+    display: block;
+}
+
+
+/* Content Section */
+.content {
+    background-color: #9bb145;
+    padding: 20px;
+    text-align: center;
+}
+
+.content h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Table Styling */
+table {
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background-color: #9bb145;
+}
+
+table, th, td {
+    border-bottom: 1px solid #003707;
+}
+
+.head {
+    border-bottom: 3px solid #003707;
+}
+
+th, td {
+    padding: 15px;
+    text-align: center;
+}
+
+td{
+    font-weight: 35px;
+}
+
+th {
+    background-color: #9bb145;
+    color: black;
+    font-weight: bolder;
+}
+
+/* Action Buttons */
+.delete-button {
+    background-color: #ff3131;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.edit-button {
+    background-color: #004aad;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.delete-button:hover {
+    background-color: #c0392b;
+}
+
+.edit-button:hover {
+    background-color: #2980b9;
+}
+
+/* Add Button */
+.add-button-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.add-button {
+    background-color: #003707;
+    color: white;
+    border: none;
+    font-size: 2em;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.add-button:hover {
+    background-color: #555;
+}

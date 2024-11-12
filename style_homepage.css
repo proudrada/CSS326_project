@@ -1,0 +1,39 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+.banner {
+    /*text box*/
+    position: relative;
+    background-image: url('homepage.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    flex-direction: column;
+    color: white;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.banner h1 {
+    font-size: 3em;
+    margin: 0 300px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 20px;
+}
+.admin-input {
+    /* position: absolute;
+    bottom: 280px; */
+    margin-top: 20px;
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 15px;
+    padding: 10px 20px;
+    font-size: 1em;
+}
