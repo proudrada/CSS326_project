@@ -1,0 +1,124 @@
+/* General body style */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #b09f5f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: #b8ab76(201, 177, 129);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: bold;
+    border-bottom: 1px solid #89540d;
+    padding-bottom: 10px;
+}
+
+/* Profile image upload style */
+.profile-image {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-image label {
+    display: inline-block;
+    cursor: pointer;
+    color: #333;
+    font-size: 12px;
+}
+
+.profile-image img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 5px;
+    border: 1px solid #3c3924;
+}
+
+.profile-image input[type="file"] {
+    display: none;
+}
+
+.profile-image span {
+    display: block;
+    background-color: #dfd6d6;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* Form styles */
+form label {
+    display: block;
+    font-size: 14px;
+    color: #333;
+    margin-top: 10px;
+    text-align: left;
+}
+
+form input[type="text"],
+form input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #d8caac;
+    border-radius: 5px;
+    background-color: #d9cdb4;
+    font-size: 14px;
+}
+
+/* Radio and Checkbox groups */
+.radio-group,
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: left;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.radio-group input[type="radio"],
+.checkbox-group input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+/* Button styles */
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.cancel-button,
+.add-button {
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.cancel-button {
+    background-color: #dfd6d6;
+    color: #333;
+}
+
+.add-button {
+    background-color: #3c3924;
+    color: white;
+}
