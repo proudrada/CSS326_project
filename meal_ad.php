@@ -62,7 +62,7 @@
             ?>
         </table>
         <div class="add-button-container">
-            <button class="add-button">+</button>
+            <button onclick="window.location.href='add_meal.php'" class="add-button">+</button>
         </div>
     </div>
 </body>

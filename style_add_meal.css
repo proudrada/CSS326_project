@@ -1,7 +1,7 @@
 /* General body style */
 body {
     font-family: Arial, sans-serif;
-    background-color: #9bb145;
+    background-color: #dfd6d6;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -10,7 +10,7 @@ body {
 }
 
 .container {
-    background-color: #b6ca64;
+    background-color: #e2e0e0;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -23,7 +23,7 @@ h1 {
     color: #333;
     margin-bottom: 20px;
     font-weight: bold;
-    border-bottom: 1px solid #003707;
+    border-bottom: 1px solid #722b14;
     padding-bottom: 10px;
 }
 
@@ -42,9 +42,9 @@ form input[type="date"] {
     padding: 10px;
     margin-top: 5px;
     margin-bottom: 15px;
-    border: 1px solid #ccc;
+    border: 1px solid #8f8f8f;
     border-radius: 5px;
-    background-color: #e4f4b1;
+    background-color: #a6a6a6;
     font-size: 14px;
     box-sizing: border-box;
 }
@@ -67,11 +67,11 @@ form input[type="date"] {
 }
 
 .cancel-button {
-    background-color: #dfd6d6;
+    background-color: #b4a4a4;
     color: #545454;
 }
 
 .add-button {
-    background-color: #123716;
+    background-color: #201f1f;
     color: white;
 }
