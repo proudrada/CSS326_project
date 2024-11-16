@@ -61,7 +61,7 @@
             </div>
 
             <div class="buttons">
-                <button type="button" onclick="window.location.href='Zookeeper_ad.html'" class="cancel-button">Cancel</button>
+                <button type="button" onclick="window.location.href='Zookeeper_ad.php'" class="cancel-button">Cancel</button>
                 <button type="submit" class="add-button">Add Zookeeper</button>
             </div>
         </form>

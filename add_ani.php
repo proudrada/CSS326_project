@@ -48,7 +48,7 @@
 
 
             <div class="buttons">
-                <button type="button" onclick="window.location.href='animal_ad.html'" class="cancel-button">Cancel</button>
+                <button type="button" onclick="window.location.href='animal_ad.php'" class="cancel-button">Cancel</button>
                 <button type="submit" class="add-button">Add Animal</button>
             </div>
         </form>
