@@ -12,7 +12,7 @@ body {
 
 /* Banner */
 .banner {
-    background-image: url('bg_animal.jpg');
+    background-image: url('img/bg_animal.jpg');
     background-size: cover;
     background-position: center;
     display: flex;

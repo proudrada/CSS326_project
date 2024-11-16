@@ -8,7 +8,7 @@ body {
 
 /* Banner */
 .banner {
-    background-image: url('bg_profile.jpg');
+    background-image: url('img/bg_profile.jpg');
     background-size: cover;
     background-position: center;
     display: flex;

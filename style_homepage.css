@@ -7,7 +7,7 @@ body {
 .banner {
     /*text box*/
     position: relative;
-    background-image: url('homepage.jpg');
+    background-image: url('img/homepage.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

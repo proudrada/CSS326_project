@@ -9,7 +9,7 @@ body {
 
 /* Banner */
 .banner {
-    background-image: url('bg_ingredient.jpg');
+    background-image: url('img/bg_ingredient.jpg');
     background-size: cover;
     background-position: center;
     display: flex;
