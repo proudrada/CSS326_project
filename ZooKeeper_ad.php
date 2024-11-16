@@ -1,3 +1,14 @@
+<?php
+require_once('connect.php');
+// Query to fetch zookeeper data
+$query = "SELECT * FROM zookeeper"; // Replace 'zookeeper' with your actual table name
+$result = $mysqli->query($query);
+// Check if query execution was successful
+if (!$result) {
+    die("Query failed: " . $mysqli->error);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,58 +41,47 @@
         <h1>Zookeeper</h1>
     </div>
 
-    <?php
-    $zookeepers = [
-        [
-            'img' => 'img/newt.jpg',
-            'name' => 'Newt Scamander',
-            'id' => '001',
-            'dob' => '1990-02-07',
-            'sex' => 'Male',
-            'salary' => '$50,000',
-            'animal_id' => 'A123',
-            'age' => 32
-        ],
-        [
-            'img' => 'img/percy.jpg',
-            'name' => 'Percy Jackson',
-            'id' => '002',
-            'dob' => '1994-08-18',
-            'sex' => 'Male',
-            'salary' => '$55,000',
-            'animal_id' => 'A124',
-            'age' => 30
-        ],
-        [
-            'img' => 'img/hagrid.jpg',
-            'name' => 'Rubeus Hagrid',
-            'id' => '003',
-            'dob' => '1968-12-06',
-            'sex' => 'Male',
-            'salary' => '$60,000',
-            'animal_id' => 'A125',
-            'age' => 56
-        ],
-    ];
-    ?>
-
     <!-- Cards Container -->
     <div class="cards-container">
-        <?php foreach ($zookeepers as $zookeeper): ?>
-        <div class="card">
-            <button class="close-btn" title="Close">X</button>
-            <img src="<?= $zookeeper['img'] ?>" alt="<?= $zookeeper['name'] ?>" class="profile-img">
-            <h2><?= $zookeeper['name'] ?></h2>
-            <p>Zookeeper ID: <span contenteditable="true"><?= $zookeeper['id'] ?></span></p>
-            <p>Date of birth: <span contenteditable="true"><?= $zookeeper['dob'] ?></span></p>
-            <p>Sex: <span contenteditable="true"><?= $zookeeper['sex'] ?></span></p>
-            <p>Salary: <span contenteditable="true"><?= $zookeeper['salary'] ?></span></p>
-            <p>Animal ID: <span contenteditable="true"><?= $zookeeper['animal_id'] ?></span></p>
-            <p>Age: <span contenteditable="true"><?= $zookeeper['age'] ?></span></p>
-            <a href="#" class="edit-icon" title="Edit">&#9998;</a>
-        </div>
-        <?php endforeach; ?>
+        <?php
+        if ($result->num_rows > 0) {
+            // Loop through each row in the result set
+            while ($row = $result->fetch_assoc()) {
+                // Calculate age
+                $dob = $row['ZDate_of_birth'];
+                if (!empty($dob)) {
+                    $dobDate = new DateTime($dob);
+                    $now = new DateTime();
+                    $age = $now->diff($dobDate)->y; 
+                } else {
+                    $age = "N/A";
+                }
+
+                // Concatenate first name and last name
+                $fullName = $row['ZKFName'] . ' ' . $row['ZKLName'];
+
+                echo "
+                <div class='card'>
+                    <button class='close-btn' title='Close'>X</button>
+                    <img src='{$row['image_path']}' alt='{$row['ZKFName']}' class='profile-img'>
+                    <h2>{$fullName}</h2>
+                    <p>Zookeeper ID: <span contenteditable='true'>{$row['ZK_ID']}</span></p>
+                    <p>Date of birth: <span contenteditable='true'>{$row['ZDate_of_birth']}</span></p>
+                    <p>Sex: <span contenteditable='true'>{$row['ZSex']}</span></p>
+                    <p>Salary: <span contenteditable='true'>\${$row['Salary']}</span></p>
+                    <p>Animal ID: <span contenteditable='true'>{$row['A_ID']}</span></p>
+                    <p>Age: <span contenteditable='true'>{$row['age']}</span></p>
+                    <a href='#' class='edit-icon' title='Edit'>&#9998;</a>
+                </div>";
+            }
+        } else {
+            echo "<p>No zookeepers found.</p>";
+        }
+        // Free result set
+        $result->free();
+        ?>
     </div>
+
 
     <div class="add-button-container">
         <button onclick="window.location.href='add_zookeep.php'" class="add-button">+</button>
