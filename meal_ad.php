@@ -11,8 +11,8 @@
     <div class="banner">
         <h1>Himalayan Zoo of Mount Olympus and Mount Liangshan</h1>
         <nav>
-            <a href="zookeeper_ad.html">Zoo Keeper</a>
-            <a href="animal_ad.html">Animal</a>
+            <a href="zookeeper_ad.php">Zoo Keeper</a>
+            <a href="animal_ad.php">Animal</a>
             <a href="zone_ad.html">Zone</a>
             <a href="ingredient_ad.php">Ingredient</a>
             <a href="meal_ad.php">Meal</a>
