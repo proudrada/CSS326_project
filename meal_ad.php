@@ -13,7 +13,7 @@
         <nav>
             <a href="zookeeper_ad.php">Zoo Keeper</a>
             <a href="animal_ad.php">Animal</a>
-            <a href="zone_ad.html">Zone</a>
+            <a href="zone_ad.php">Zone</a>
             <a href="ingredient_ad.php">Ingredient</a>
             <a href="meal_ad.php">Meal</a>
         </nav>
@@ -34,7 +34,8 @@
         <table>
             <tr class="head">
                 <th>Meal Code</th>
-                <th>Animal_ID</th>
+                <th>Animal ID</th>
+                <th>Ingredient ID</th>
                 <th>Date</th>
                 <th>Time</th>
                 <th>Action</th>
@@ -42,14 +43,15 @@
             <?php
             // Example PHP loop to generate rows (replace with actual database data)
             $meals = [
-                ['code' => 'F001', 'id' => 'Type A', 'date' => '500g', 'time' => '12/12/2023'],
-                ['code' => 'F002', 'id' => 'Type B', 'date' => '300g', 'time' => '15/01/2024'],
-                ['code' => 'F001', 'id' => 'Type A', 'date' => '500g', 'time' => '12/12/2023'],
-                ['code' => 'F002', 'id' => 'Type B', 'date' => '300g', 'time' => '15/01/2024'],
+                ['code' => 'F001', 'id' => 'Type A', 'id' => 'Type A', 'date' => '500g', 'time' => '12/12/2023'],
+                ['code' => 'F002', 'id' => 'Type B', 'id' => 'Type A','date' => '300g', 'time' => '15/01/2024'],
+                ['code' => 'F001', 'id' => 'Type A', 'id' => 'Type A','date' => '500g', 'time' => '12/12/2023'],
+                ['code' => 'F002', 'id' => 'Type B', 'id' => 'Type A','date' => '300g', 'time' => '15/01/2024'],
             ];
             foreach ($meals as $meal) {
                 echo "<tr>
                         <td>{$meal['code']}</td>
+                        <td>{$meal['id']}</td>
                         <td>{$meal['id']}</td>
                         <td>{$meal['date']}</td>
                         <td>{$meal['time']}</td>

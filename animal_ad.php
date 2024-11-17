@@ -27,7 +27,7 @@ if (!$result) {
         <nav>
             <a href="zookeeper_ad.php">Zoo Keeper</a>   
             <a href="animal_ad.php">Animal</a>
-            <a href="zone_ad.html">Zone</a>
+            <a href="zone_ad.php">Zone</a>
             <a href="ingredient_ad.php">Ingredient</a>
             <a href="meal_ad.php">Meal</a>
         </nav>
@@ -70,7 +70,6 @@ if (!$result) {
         } else {
             echo "<p>No animals found.</p>";
         }
-        $conn->close();
         ?>
     </div>
 

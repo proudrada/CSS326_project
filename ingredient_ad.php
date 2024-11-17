@@ -1,3 +1,14 @@
+<?php
+require_once('connect.php');
+// Query to fetch zookeeper data
+$query = "SELECT * FROM ingredient"; // Replace 'animal' with your actual table name
+$result = $mysqli->query($query);
+// Check if query execution was successful
+if (!$result) {
+    die("Query failed: " . $mysqli->error);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,17 +24,10 @@
         <nav>
             <a href="zookeeper_ad.php">Zoo Keeper</a>
             <a href="animal_ad.php">Animal</a>
-            <a href="zone_ad.html">Zone</a>
+            <a href="zone_ad.php">Zone</a>
             <a href="ingredient_ad.php">Ingredient</a>
             <a href="meal_ad.php">Meal</a>
         </nav>
-        <!-- <div class="admin">
-        <div class="admin-dropdown">
-            <button class="admin-btn">Admin_1 ▼</button>
-            <div class="dropdown-content">
-                <a href="homepage.html">Log-out</a>
-            </div>
-        </div> -->
     </div>
 
     <div class="topic">
@@ -41,27 +45,25 @@
                 <th>Action</th>
             </tr>
             <?php
-            // Example PHP loop to generate rows (replace with actual database data)
-            $ingredients = [
-                ['id' => 'F001', 'type' => 'Type A', 'amount' => '500g', 'expiry' => '12/12/2023'],
-                ['id' => 'F002', 'type' => 'Type B', 'amount' => '300g', 'expiry' => '15/01/2024'],
-                ['id' => 'F003', 'type' => 'Type C', 'amount' => '250g', 'expiry' => '20/02/2024'],
-                ['id' => 'F004', 'type' => 'Type D', 'amount' => '400g', 'expiry' => '10/03/2024']
-            ];
-            foreach ($ingredients as $ingredient) {
-                echo "<tr>
-                        <td>{$ingredient['id']}</td>
-                        <td>{$ingredient['type']}</td>
-                        <td>{$ingredient['amount']}</td>
-                        <td>{$ingredient['expiry']}</td>
-                        <td>
-                            <button class='delete-button'>Delete</button>
-                            <button class='edit-button'>Edit</button>
-                        </td>
-                      </tr>";
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>
+                            <td>{$row['In_ID']}</td>
+                            <td>{$row['In_type']}</td>
+                            <td>{$row['In_amount']}</td>
+                            <td>{$row['Expiration_date']}</td>
+                            <td>
+                                <button class='delete-button'>Delete</button>
+                                <button class='edit-button'>Edit</button>
+                            </td>
+                          </tr>";
+                }
+            } else {
+                echo "<tr><td colspan='5'>No ingredients found.</td></tr>";
             }
             ?>
         </table>
+
         <div class="add-button-container">
             <button onclick="window.location.href='add_in.php'" class="add-button">+</button>
         </div>
