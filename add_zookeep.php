@@ -38,7 +38,7 @@
             <label for="dob">Date of Birth</label>
             <input type="date" id="dob" name="dob" required>
 
-            <label>Animal ID</label>
+            <!-- <label>Animal ID</label>
             <div class="checkbox-group">
                 <input type="checkbox" id="A001" name="animal_id[]" value="A001">
                 <label for="A001">A001</label>
@@ -58,7 +58,7 @@
                 <label for="A008">A008</label>
                 <input type="checkbox" id="A009" name="animal_id[]" value="A009">
                 <label for="A009">A009</label>
-            </div>
+            </div> -->
 
             <div class="buttons">
                 <button type="button" onclick="window.location.href='Zookeeper_ad.php'" class="cancel-button">Cancel</button>
