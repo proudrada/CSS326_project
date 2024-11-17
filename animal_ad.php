@@ -1,7 +1,7 @@
 <?php
 require_once('connect.php');
 // Query to fetch zookeeper data
-$query = "SELECT * FROM animal"; // Replace 'animal' with your actual table name
+$query = "SELECT * FROM animal";
 $result = $mysqli->query($query);
 // Check if query execution was successful
 if (!$result) {

@@ -1,3 +1,14 @@
+<?php
+require_once('connect.php');
+// Query to fetch zookeeper data
+$query = "SELECT * FROM meal";
+$result = $mysqli->query($query);
+// Check if query execution was successful
+if (!$result) {
+    die("Query failed: " . $mysqli->error);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,28 +49,24 @@
                 <th>Ingredient ID</th>
                 <th>Date</th>
                 <th>Time</th>
-                <th>Action</th>
-            </tr>
+                <th>Action</th></tr>
             <?php
-            // Example PHP loop to generate rows (replace with actual database data)
-            $meals = [
-                ['code' => 'F001', 'id' => 'Type A', 'id' => 'Type A', 'date' => '500g', 'time' => '12/12/2023'],
-                ['code' => 'F002', 'id' => 'Type B', 'id' => 'Type A','date' => '300g', 'time' => '15/01/2024'],
-                ['code' => 'F001', 'id' => 'Type A', 'id' => 'Type A','date' => '500g', 'time' => '12/12/2023'],
-                ['code' => 'F002', 'id' => 'Type B', 'id' => 'Type A','date' => '300g', 'time' => '15/01/2024'],
-            ];
-            foreach ($meals as $meal) {
-                echo "<tr>
-                        <td>{$meal['code']}</td>
-                        <td>{$meal['id']}</td>
-                        <td>{$meal['id']}</td>
-                        <td>{$meal['date']}</td>
-                        <td>{$meal['time']}</td>
-                        <td>
-                            <button class='delete-button'>Delete</button>
-                            <button class='edit-button'>Edit</button>
-                        </td>
-                      </tr>";
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>
+                            <td>{$row['Meal_code']}</td>
+                            <td>{$row['A_ID']}</td>
+                            <td>{$row['In_ID']}</td>
+                            <td>{$row['Date']}</td>
+                            <td>{$row['Time']}</td>
+                            <td>
+                                <button class='delete-button'>Delete</button>
+                                <button class='edit-button'>Edit</button>
+                            </td>
+                          </tr>";
+                }
+            } else {
+                echo "<tr><td colspan='5'>No ingredients found.</td></tr>";
             }
             ?>
         </table>
