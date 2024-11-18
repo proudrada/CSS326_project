@@ -1,10 +1,18 @@
 <?php
 require_once('connect.php');
 // Fetch zookeeper data for the dropdown
-$query = "SELECT In_ID FROM ingredient";
-$result = $mysqli->query($query);
-if (!$result) {
-    die("Query failed: " . $mysqli->error);
+$query_ingredients = "SELECT In_ID FROM ingredient";
+$query_animals = "SELECT A_ID FROM animal";
+
+// Execute both queries
+$result_ingredients = $mysqli->query($query_ingredients);
+if (!$result_ingredients) {
+    die("Query for ingredients failed: " . $mysqli->error);
+}
+
+$result_animals = $mysqli->query($query_animals);
+if (!$result_animals) {
+    die("Query for animals failed: " . $mysqli->error);
 }
 ?>
 
@@ -24,13 +32,20 @@ if (!$result) {
             <input type="text" id="meal_code" name="meal_code" required>
 
             <label for="Animal_ID">Animal ID</label>
-            <input type="text" id="Animal_ID" name="Animal_ID" required>
+            <select type="drop-down" id="Animal_ID" name="Animal_ID" required>
+                <option value="" disabled selected>Select Animal</option>
+                <?php
+                while ($row = $result_animals->fetch_assoc()) {
+                    echo "<option value=\"{$row['A_ID']}\">{$row['A_ID']}</option>";
+                }
+                ?>
+            </select>
 
             <label for="Ingredient_ID">Ingredient ID</label>
             <select type="drop-down" id="Ingredient_ID" name="Ingredient_ID" required>
                 <option value="" disabled selected>Select Ingredient</option>
                 <?php
-                while ($row = $result->fetch_assoc()) {
+                while ($row = $result_ingredients->fetch_assoc()) {
                     echo "<option value=\"{$row['In_ID']}\">{$row['In_ID']}</option>";
                 }
                 ?>
