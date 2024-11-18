@@ -39,7 +39,7 @@
             <input type="date" id="dob" name="dob" required>
 
             <label for="zookeeper_id">Zookeeper ID</label>
-            <select id="zookeeper_id" name="zookeeper_id" required>
+            <select type="drop-down" id="zookeeper_id" name="zookeeper_id" required>
                 <option value="" disabled selected>Select Zookeeper ID</option>
                 <option value="Z001">Z001</option>
                 <option value="Z002">Z002</option>
