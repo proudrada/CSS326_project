@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <h1>Create New Zookeeper</h1>
-        <form action="process.php" method="POST" enctype="multipart/form-data">
+        <form action="add_zookeep.php" method="POST" enctype="multipart/form-data">
             <div class="profile-image">
                 <label for="profile_image">
                     <img src="placeholder.png" alt="Profile Placeholder">

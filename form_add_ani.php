@@ -1,3 +1,13 @@
+<?php
+require_once('connect.php');
+// Fetch zookeeper data for the dropdown
+$query = "SELECT ZK_ID, ZKFName, ZKLName FROM zookeeper";
+$result = $mysqli->query($query);
+if (!$result) {
+    die("Query failed: " . $mysqli->error);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +19,7 @@
 <body>
     <div class="container">
         <h1>Create New Animal</h1>
-        <form action="process.php" method="POST" enctype="multipart/form-data">
+        <form action="add_ani.php" method="POST" enctype="multipart/form-data">
             <div class="profile-image">
                 <label for="profile_image">
                     <img src="placeholder.png" alt="Profile Placeholder">
@@ -40,10 +50,14 @@
 
             <label for="zookeeper_id">Zookeeper ID</label>
             <select type="drop-down" id="zookeeper_id" name="zookeeper_id" required>
-                <option value="" disabled selected>Select Zookeeper ID</option>
-                <option value="Z001">Z001</option>
-                <option value="Z002">Z002</option>
-                <option value="Z003">Z003</option>
+            <option value="" disabled selected>Select Zookeeper</option>
+            <?php
+            while ($row = $result->fetch_assoc()) {
+                $zkId = $row['ZK_ID'];
+                $zkName = $row['ZKFName'] . ' ' . $row['ZKLName'];
+                echo "<option value='$zkId'>$zkId - $zkName</option>";
+            }
+            ?>
             </select>
 
 

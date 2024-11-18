@@ -84,7 +84,7 @@ if (!$result) {
 
 
     <div class="add-button-container">
-        <button onclick="window.location.href='add_zookeep.php'" class="add-button">+</button>
+        <button onclick="window.location.href='form_add_zookeep.php'" class="add-button">+</button>
     </div>
 </body>
 </html>

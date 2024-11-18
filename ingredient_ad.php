@@ -31,7 +31,7 @@ if (!$result) {
         <div class="admin-dropdown">
             <button class="admin-btn">Admin_1 ▼</button>
             <div class="dropdown-content">
-            <a href="homepage.html">Log-out</a>
+                <a href="homepage.html">Log-out</a>
             </div>
         </div>
     </div>
@@ -56,7 +56,7 @@ if (!$result) {
                     echo "<tr>
                             <td>{$row['In_ID']}</td>
                             <td>{$row['In_type']}</td>
-                            <td>{$row['In_amount']}</td>
+                            <td>{$row['In_amount']} kg</td>
                             <td>{$row['Expiration_date']}</td>
                             <td>
                                 <button class='delete-button'>Delete</button>
@@ -71,7 +71,7 @@ if (!$result) {
         </table>
 
         <div class="add-button-container">
-            <button onclick="window.location.href='add_in.php'" class="add-button">+</button>
+            <button onclick="window.location.href='form_add_in.php'" class="add-button">+</button>
         </div>
     </div>
 </body>

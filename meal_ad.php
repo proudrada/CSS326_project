@@ -71,7 +71,7 @@ if (!$result) {
             ?>
         </table>
         <div class="add-button-container">
-            <button onclick="window.location.href='add_meal.php'" class="add-button">+</button>
+            <button onclick="window.location.href='form_add_meal.php'" class="add-button">+</button>
         </div>
     </div>
 </body>

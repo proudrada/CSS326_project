@@ -38,6 +38,7 @@ form label {
 
 form input[type="text"],
 form input[type="date"],
+form select[type="drop-down"],
 form input[type="time"] {
     width: 100%;
     padding: 10px;

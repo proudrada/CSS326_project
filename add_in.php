@@ -1,32 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create New Ingredient</title>
-    <link rel="stylesheet" href="style_add_in.css">
-</head>
-<body>
-    <div class="container">
-        <h1>Create New Ingredient</h1>
-        <form action="process.php" method="POST">
-            <label for="ingredient_id">Ingredient ID</label>
-            <input type="text" id="ingredient_id" name="ingredient_id" required>
+<?php
+require_once('connect.php');
 
-            <label for="ingredient_type">Ingredient Type</label>
-            <input type="text" id="ingredient_type" name="ingredient_type" required>
+// Check if the form was submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve and sanitize input values
+    $ingredient_id = $mysqli->real_escape_string($_POST['ingredient_id']);
+    $ingredient_type = $mysqli->real_escape_string($_POST['ingredient_type']);
+    $ingredient_amount = $mysqli->real_escape_string($_POST['ingredient_amount']);
+    $expiration_date = $mysqli->real_escape_string($_POST['expiration_date']);
 
-            <label for="ingredient_amount">Ingredient Amount</label>
-            <input type="text" id="ingredient_amount" name="ingredient_amount" required>
+    // SQL query to insert the data into the ingredient table
+    $query = "INSERT INTO ingredient (In_ID, In_type, In_amount, Expiration_date) 
+              VALUES ('$ingredient_id', '$ingredient_type', '$ingredient_amount', '$expiration_date')";
 
-            <label for="expiration_date">Expiration Date</label>
-            <input type="date" id="expiration_date" name="expiration_date" required>
-
-            <div class="buttons">
-                <button type="button" onclick="window.location.href='ingredient_ad.php'" class="cancel-button">Cancel</button>
-                <button type="submit" class="add-button">Add Ingredient</button>
-            </div>
-        </form>
-    </div>
-</body>
-</html>
+    // Execute the query
+    if ($mysqli->query($query) === TRUE) {
+        // Redirect back to the ingredient_ad.php page with a success message
+        header("Location: ingredient_ad.php?message=success");
+        exit();
+    } else {
+        // Display an error message
+        echo "Error: " . $query . "<br>" . $mysqli->error;
+    }
+}
+?>
