@@ -60,8 +60,7 @@ if (!$result) {
                             <td>{$row['Date']}</td>
                             <td>{$row['Time']}</td>
                             <td>
-                                <button class='delete-button'>Delete</button>
-                                <button class='edit-button'>Edit</button>
+                                <a href='delete_meal.php?Meal_code={$row['Meal_code']}' class='delete-button'>Delete</a>
                             </td>
                           </tr>";
                 }

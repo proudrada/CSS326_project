@@ -70,7 +70,7 @@ if (!$result) {
                     <p>Sex: <span contenteditable='true'>{$row['ZSex']}</span></p>
                     <p>Salary: <span contenteditable='true'>\${$row['Salary']}</span></p>
                     <p>Animal ID: <span contenteditable='true'>{$row['A_ID']}</span></p>
-                    <p>Age: <span contenteditable='true'>{$row['age']}</span></p>
+                    <p>Age: <span contenteditable='true'>{$age}</span></p>
                     <a href='#' class='edit-icon' title='Edit'>&#9998;</a>
                 </div>";
             }

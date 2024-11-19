@@ -59,8 +59,7 @@ if (!$result) {
                             <td>{$row['In_amount']} kg</td>
                             <td>{$row['Expiration_date']}</td>
                             <td>
-                                <button class='delete-button'>Delete</button>
-                                <button class='edit-button'>Edit</button>
+                                <a href='delete_in.php?In_ID={$row['In_ID']}' class='delete-button'>Delete</a>
                             </td>
                           </tr>";
                 }

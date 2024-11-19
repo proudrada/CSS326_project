@@ -1,23 +1,30 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-require_once('connect.php');
+require('connect.php');
 
 // Check if the ingredient ID is provided via GET
-if (isset($_GET['id'])) {
-    $ingredient_id = $mysqli->real_escape_string($_GET['id']);
+if (isset($_GET['In_ID'])) {
+    // Use prepared statements to avoid SQL injection
+    $ingredient_id = $_GET['In_ID'];
+    $stmt = $mysqli->prepare("DELETE FROM ingredient WHERE In_ID = ?");
+    
+    if ($stmt) {
+        // Bind the parameter and execute the statement
+        $stmt->bind_param("s", $ingredient_id);
+        
+        if ($stmt->execute()) {
+            // Redirect back to the ingredient management page with a success message
+            header("Location: ingredient_ad.php?message=deleted");
+            exit();
+        } else {
+            // Display an error message if execution fails
+            echo "Error executing query: " . $stmt->error;
+        }
 
-    // SQL query to delete the ingredient
-    $query = "DELETE FROM ingredient WHERE In_ID = '$ingredient_id'";
-
-    // Execute the query
-    if ($mysqli->query($query) === TRUE) {
-        // Redirect back to the ingredient_ad.php page with a success message
-        header("Location: ingredient_ad.php?message=deleted");
-        exit();
+        // Close the statement
+        $stmt->close();
     } else {
-        // Display an error message
-        echo "Error: " . $query . "<br>" . $mysqli->error;
+        // Display an error message if statement preparation fails
+        echo "Error preparing query: " . $mysqli->error;
     }
 } else {
     echo "No ingredient ID specified.";

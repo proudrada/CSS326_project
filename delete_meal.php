@@ -1,21 +1,28 @@
 <?php
-require_once('connect.php');
+require('connect.php');
 
-// Check if Meal_code is provided
+// Check if the Meal_code is provided via GET
 if (isset($_GET['Meal_code'])) {
-    $meal_code = $mysqli->real_escape_string($_GET['Meal_code']);
+    $meal_code = $_GET['Meal_code'];
+    $stmt = $mysqli->prepare("DELETE FROM meal WHERE Meal_code = ?");
 
-    // SQL query to delete the meal
-    $query = "DELETE FROM meal WHERE Meal_code = '$meal_code'";
+    if ($stmt) {
+        // Bind the parameter and execute the statement
+        $stmt->bind_param("s", $meal_code);
 
-    if ($mysqli->query($query) === TRUE) {
-        // Redirect back to the meal_ad.php page with a success message
-        header("Location: meal_ad.php?message=deleted");
-        exit();
+        if ($stmt->execute()) {
+            // Redirect back with a success message
+            header("Location: meal_ad.php?message=deleted");
+            exit();
+        } else {
+            echo "Error executing query: " . $stmt->error;
+        }
+
+        $stmt->close();
     } else {
-        echo "Error: " . $mysqli->error;
+        echo "Error preparing query: " . $mysqli->error;
     }
 } else {
-    echo "No Meal_code specified.";
+    echo "No meal code specified.";
 }
 ?>
