@@ -1,4 +1,5 @@
 /* General body style */
+
 body {
     font-family: Arial, sans-serif;
     background-color: #e9b166;
@@ -16,6 +17,7 @@ body {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     width: 400px;
     text-align: center;
+    margin-top: 75px;
 }
 
 h1 {
