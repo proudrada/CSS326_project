@@ -1,3 +1,4 @@
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -6,7 +7,7 @@ body {
     color: #333;
 }
 
-/* Banner */
+/* Banner Styles */
 .banner {
     background-image: url('img/bg_profile.jpg');
     background-size: cover;
@@ -21,7 +22,6 @@ body {
     justify-content: center; /* Centers content vertically */
     align-items: center; /* Centers content horizontally */
 }
-
 .banner h1 {
     font-size: 2em;
     background-color: rgba(0, 0, 0, 0.6);
@@ -29,7 +29,7 @@ body {
     border-radius: 5px;
     margin: 10px;
 }
-
+    
 /* Navigation Styles */
 .banner nav {
     display: flex;
@@ -39,7 +39,7 @@ body {
     border-radius: 5px;
     margin-top: 10px;
 }
-
+    
 .banner nav a {
     color: white;
     text-decoration: none;
@@ -49,27 +49,28 @@ body {
     background-color: rgba(255, 255, 255, 0.1); /* Light semi-transparent */
     transition: background-color 0.3s ease;
 }
-
+    
 .banner nav a:hover {
     background-color: rgba(255, 255, 255, 0.3);
 }
-
+    
 /* Admin Dropdown */
 .admin-dropdown {
     position: absolute;
     top: 10px;
     right: 20px;
-}
-
+    }
+    
 .admin-btn {
     background:  rgba(0, 0, 0, 0.8);
     border-radius: 5px;
     padding: 5px;
-    color: white;
+    border: none;
+    color: rgb(255, 255, 255);
     font-size: 1em;
     cursor: pointer;
 }
-
+    
 .dropdown-content {
     display: none;
     position: absolute;
@@ -78,113 +79,81 @@ body {
     padding: 5px;
     border-radius: 5px;
 }
-
+    
 .dropdown-content a {
-    color: white;
+    color: rgb(255, 255, 255);
     text-decoration: none;
     display: block;
 }
-
+    
 .dropdown-content a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(29, 26, 26, 0.2);
 }
-
+    
 .admin-dropdown:hover .dropdown-content {
     display: block;
-}
 
+}
 .topic h1{
     font-size: 2em;
-    text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-shadow: 0px 4px 6px rgba(255, 0, 0, 0.1);
     text-align: center;
     padding: 10px 20px;
     margin: 10px;
-}
+}    
 
-
-/* Cards Container */
-.cards-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
-    flex-wrap: wrap;
-}
-
-.card {
-    background-color: white;
+/* Profile Container */
+.profile-container {
+    margin: 20px auto;
+    display: flex; /*ทำให้กล่องเป็นแนวนอน */
+    align-items: center; /*ทำให้ข้อมูลอยู่กลาง */
+    background-color: #ffffff; /* สีกล่อง */
     border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    width: 250px;
-    text-align: center;
-    position: relative;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    width: 700px; /* Fixed width for consistency */
+    /* text-align: center; */
+    gap: 20px;
+}
+.profile-text h1{
+    text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+/* Profile Image */
+.profile-container img {
+    width: 200px; /* Adjust image size to fit the design */
+    height: 200px;
+    border-radius: 50%;
+    border: 2px solid #89540d; /* Border matching design */
+    object-fit: cover; /* Ensure image fits the circle */
+}
+
+/* Profile Details */
+.profile-container .profile-details {
+    flex: 1; /* Allow text section to grow */
+}
+
+.profile-container .profile-details h1 {
+    font-size: 20px;
+    color: #000000;
+    margin: 0 0 10px 0; /* Adjust spacing for proper alignment */
+    text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+}
+.proflie-info{
+    display: flex;
     flex-direction: column;
 }
-
-/* Close Button */
-.close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    color: #666;
-    font-size: 1.2em;
-    text-decoration: none;
+.profile-text{
+    display: flex;
+    flex-direction: column;
 }
-
-.close-btn:hover {
-    color: #666;
-}
-
-.profile-img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin-bottom: 10px;
-}
-
-.card h2 {
-    font-size: 1.5em;
-    margin: 10px 0;
-}
-
-.card p {
-    font-size: 0.9em;
+.profile-container .profile-details p {
+    font-size: 14px; /* Adjust font size to fit the layout */
+    color: #000;
     margin: 5px 0;
-    color: #666;
 }
 
-.edit-icon {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    color: #666;
-    font-size: 1.2em;
-    text-decoration: none;
+.profile-container .profile-details p strong {
+    font-weight: bold;
+    color: #333; /* Highlight the labels */
 }
-
-.edit-icon:hover {
-    color: #333;
-}
-
-.add-button-container {
-    margin-top: 20px;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.add-button {
-    background-color: #574812;
-    color: white;
-    border: none;
-    font-size: 2em;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-.add-button:hover {
-    background-color: #555;
-}
-

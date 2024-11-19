@@ -34,7 +34,7 @@ if (!$result) {
         <div class="admin-dropdown">
             <button class="admin-btn">Admin_1 ▼</button>
             <div class="dropdown-content">
-                <a href="homepage.html">Log-out</a>
+                <a href="homepage.php">Log-out</a>
             </div>
         </div>
     </div>
@@ -61,6 +61,7 @@ if (!$result) {
                 
                 echo "
                 <div class='card'>
+                    <button class='close-btn' title='Close'>X</button>
                     <img src='{$row['image_path']}' alt='{$row['name']}' class='profile-img'>
                     <h2>{$row['A_name']}</h2>
                     <p>Animal ID: <span contenteditable='true'>{$row['A_ID']}</span></p>
