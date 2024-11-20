@@ -46,8 +46,7 @@ $zookeeper = $result->fetch_assoc();
             </div>
         </div>
     </div>
-<!-- ปัญหา: ข้อมูลไม่ลิ้งกับ user_ID -->
-    <!-- Zookeeper Profile -->
+
     <div class="profile-container">
         <?php if ($zookeeper): ?>
             <img src="<?= $zookeeper['image_path']; ?>" alt="<?= $zookeeper['ZKFName']; ?>">
