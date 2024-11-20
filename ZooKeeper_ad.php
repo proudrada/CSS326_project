@@ -2,11 +2,18 @@
 require_once('connect.php');
 // Query to fetch zookeeper data
 $query = "SELECT * FROM zookeeper";
+$query_admin = "SELECT * FROM admin";
 $result = $mysqli->query($query);
 // Check if query execution was successful
 if (!$result) {
     die("Query failed: " . $mysqli->error);
 }
+$result_admin = $mysqli->query($query_admin);
+// Check if query execution was successful
+if (!$result_admin) {
+    die("Query failed: " . $mysqli->error);
+}
+$admin = $result_admin->fetch_assoc();
 ?>
 
 <!DOCTYPE html>
@@ -18,19 +25,19 @@ if (!$result) {
     <link rel="stylesheet" href="style_ZooKeep.css">
 </head>
 <body>
+    <nav>
+        <a href="zookeeper_ad.php">Zoo Keeper</a>
+        <a href="animal_ad.php">Animal</a>
+        <a href="zone_ad.php">Zone</a>
+        <a href="ingredient_ad.php">Ingredient</a>
+        <a href="meal_ad.php">Meal</a>
+    </nav>
     <!-- Banner with Navigation Links -->
     <div class="banner">
         <h1>Himalayan Zoo of Mount Olympus and Mount Liangshan</h1>
-        <nav>
-            <a href="zookeeper_ad.php">Zoo Keeper</a>
-            <a href="animal_ad.php">Animal</a>
-            <a href="zone_ad.php">Zone</a>
-            <a href="ingredient_ad.php">Ingredient</a>
-            <a href="meal_ad.php">Meal</a>
-        </nav>
         <!-- Admin Dropdown -->
         <div class="admin-dropdown">
-            <button class="admin-btn">Admin_1 ▼</button>
+            <button class="admin-btn"><?= $admin['Ad_name']; ?>▼</button>
             <div class="dropdown-content">
                 <a href="homepage.php">Log-out</a>
             </div>
@@ -45,7 +52,7 @@ if (!$result) {
     <div class="cards-container">
         <?php
         if ($result->num_rows > 0) {
-            // Loop through each row in the result set
+            // Loop through each zookeeper
             while ($row = $result->fetch_assoc()) {
                 // Calculate age
                 $dob = $row['ZDate_of_birth'];
@@ -59,6 +66,21 @@ if (!$result) {
 
                 // Concatenate first name and last name
                 $fullName = $row['ZKFName'] . ' ' . $row['ZKLName'];
+                $zookeeper_id = $row['ZK_ID'];
+
+                // Query to fetch animals assigned to this zookeeper
+                $query_animal = "SELECT A_ID FROM animal WHERE ZK_ID = ?";
+                $stmt_animal = $mysqli->prepare($query_animal);
+                $stmt_animal->bind_param("s", $zookeeper_id);
+                $stmt_animal->execute();
+                $result_animal = $stmt_animal->get_result();
+
+                // Initialize animal ID array
+                $animal_ids = [];
+                while ($animal_row = $result_animal->fetch_assoc()) {
+                    $animal_ids[] = $animal_row['A_ID'];  // Store animal IDs
+                }
+                $animal_ids_str = implode(', ', $animal_ids);  // Convert array to comma-separated string
 
                 echo "
                 <div class='card'>
@@ -69,7 +91,7 @@ if (!$result) {
                     <p>Date of birth: <span contenteditable='true'>{$row['ZDate_of_birth']}</span></p>
                     <p>Sex: <span contenteditable='true'>{$row['ZSex']}</span></p>
                     <p>Salary: <span contenteditable='true'>\${$row['Salary']}</span></p>
-                    <p>Animal ID: <span contenteditable='true'>{$row['A_ID']}</span></p>
+                    <p>Animal ID(s): <span contenteditable='true'>{$animal_ids_str}</span></p>  <!-- Display Animal IDs -->
                     <p>Age: <span contenteditable='true'>{$age}</span></p>
                     <a href='#' class='edit-icon' title='Edit'>&#9998;</a>
                 </div>";
@@ -81,7 +103,6 @@ if (!$result) {
         $result->free();
         ?>
     </div>
-
 
     <div class="add-button-container">
         <button onclick="window.location.href='form_add_zookeep.php'" class="add-button">+</button>
