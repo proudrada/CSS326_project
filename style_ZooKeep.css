@@ -9,7 +9,17 @@ body {
 /* Banner */
 /* Navigation Styles */
 nav {
-    background-color: red;
+    background-color: rgb(93, 98, 97);
+    display: flex;
+    padding: 5px 20px;
+}
+nav a {
+    margin: 5px 10px;
+    background-color: gray;
+    padding: 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
 }
 
 .banner nav {
@@ -18,7 +28,7 @@ nav {
     background-color: #fff; /* Solid white background for the navbar */
     padding: 10px 50px; /* More padding for a clean layout */
     border-radius: 25px; /* Rounded corners for the navbar */
-    /* margin-top: 20px; */
+    margin-top: 20px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
 }
 
