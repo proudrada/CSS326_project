@@ -31,10 +31,6 @@ $admin = $result_admin->fetch_assoc();
         <a href="zone_ad.php">Zone</a>
         <a href="ingredient_ad.php">Ingredient</a>
         <a href="meal_ad.php">Meal</a>
-    </nav>
-    <!-- Banner with Navigation Links -->
-    <div class="banner">
-        <h1>Himalayan Zoo of Mount Olympus and Mount Liangshan</h1>
         <!-- Admin Dropdown -->
         <div class="admin-dropdown">
             <button class="admin-btn"><?= $admin['Ad_name']; ?>▼</button>
@@ -42,6 +38,10 @@ $admin = $result_admin->fetch_assoc();
                 <a href="homepage.php">Log-out</a>
             </div>
         </div>
+    </nav>
+    <!-- Banner with Navigation Links -->
+    <div class="banner">
+        <h1>Himalayan Zoo of Mount Olympus and Mount Liangshan</h1>
     </div>
 
     <div class="topic">
