@@ -2,11 +2,18 @@
 require_once('connect.php');
 // Query to fetch zookeeper data
 $query = "SELECT * FROM meal";
+$query_admin = "SELECT * FROM admin";
 $result = $mysqli->query($query);
 // Check if query execution was successful
 if (!$result) {
     die("Query failed: " . $mysqli->error);
 }
+$result_admin = $mysqli->query($query_admin);
+// Check if query execution was successful
+if (!$result_admin) {
+    die("Query failed: " . $mysqli->error);
+}
+$admin = $result_admin->fetch_assoc();
 ?>
 
 <!DOCTYPE html>
@@ -29,10 +36,10 @@ if (!$result) {
             <a href="meal_ad.php">Meal</a>
         </nav>
         <div class="admin-dropdown">
-            <button class="admin-btn">Admin_1 ▼</button>
-            <div class="dropdown-content">
-            <a href="homepage.php">Log-out</a>
-            </div>
+            <button class="admin-btn"><?= $admin['Ad_name']; ?>▼</button>
+                <div class="dropdown-content">
+                    <a href="homepage.php">Log-out</a>
+                </div>
         </div>
     </div>
     

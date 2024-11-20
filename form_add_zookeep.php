@@ -5,39 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create New Zookeeper</title>
     <link rel="stylesheet" href="style_add_zookeep.css">
-    <style>
-        /* Inline CSS for image upload styling */
-        .profile-image {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .image-upload-label {
-            display: inline-block;
-            cursor: pointer;
-        }
-
-        #profile-preview {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 2px solid #ddd;
-            display: block;
-            margin: 0 auto 10px;
-        }
-
-        #profile_image {
-            display: none; /* Hide the file input */
-        }
-
-        .image-upload-label span {
-            display: block;
-            text-align: center;
-            font-size: 14px;
-            color: #555;
-        }
-    </style>
 </head>
 <body>
     <div class="container">

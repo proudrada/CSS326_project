@@ -122,3 +122,34 @@ form input[type="date"] {
     background-color: #3c3924;
     color: white;
 }
+
+.profile-image {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.image-upload-label {
+    display: inline-block;
+    cursor: pointer;
+}
+
+#profile-preview {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+#profile_image {
+    display: none; /* Hide the file input */
+}
+
+.image-upload-label span {
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+}

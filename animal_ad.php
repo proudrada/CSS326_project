@@ -2,11 +2,18 @@
 require_once('connect.php');
 // Query to fetch zookeeper data
 $query = "SELECT * FROM animal";
+$query_admin = "SELECT * FROM admin";
 $result = $mysqli->query($query);
 // Check if query execution was successful
 if (!$result) {
     die("Query failed: " . $mysqli->error);
 }
+$result_admin = $mysqli->query($query_admin);
+// Check if query execution was successful
+if (!$result_admin) {
+    die("Query failed: " . $mysqli->error);
+}
+$admin = $result_admin->fetch_assoc();
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +39,7 @@ if (!$result) {
             <a href="meal_ad.php">Meal</a>
         </nav>
         <div class="admin-dropdown">
-            <button class="admin-btn">Admin_1 ▼</button>
+            <button class="admin-btn"><?= $admin['Ad_name']; ?>▼</button>
             <div class="dropdown-content">
                 <a href="homepage.php">Log-out</a>
             </div>
@@ -61,7 +68,7 @@ if (!$result) {
                 
                 echo "
                 <div class='card'>
-                    <button class='close-btn' title='Close'>X</button>
+                    <a href='delete_ani.php?A_ID={$row['A_ID']}' class='close-btn' title='Close'>X</a>
                     <img src='{$row['image_path']}' alt='{$row['name']}' class='profile-img'>
                     <h2>{$row['A_name']}</h2>
                     <p>Animal ID: <span contenteditable='true'>{$row['A_ID']}</span></p>
@@ -69,7 +76,7 @@ if (!$result) {
                     <p>Species: <span contenteditable='true'>{$row['Species']}</span></p>
                     <p>Sex: <span contenteditable='true'>{$row['A_Sex']}</span></p>
                     <p>Zookeeper ID: <span contenteditable='true'>{$row['ZK_ID']}</span></p>
-                    <p>Age: <span contenteditable='true'>{$row['age']}</span></p>
+                    <p>Age: <span contenteditable='true'>$age</span></p>
                     <p>Zone: <span contenteditable='true'>{$row['Zone_name']}</span></p>
                     <a href='#' class='edit-icon' title='Edit'>&#9998;</a>
                 </div>";
