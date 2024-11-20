@@ -7,55 +7,85 @@ body {
 }
 
 /* Banner */
-.banner {
-    background-image: url('img/bg_profile.jpg');
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    color: white;
-    padding: 20px;
-    height: 40vh;
-    position: relative;
-    justify-content: center; /* Centers content vertically */
-    align-items: center; /* Centers content horizontally */
-}
-
-.banner h1 {
-    font-size: 2em;
-    background-color: rgba(0, 0, 0, 0.6);
-    padding: 10px 20px;
-    border-radius: 5px;
-    margin: 10px;
-}
-
 /* Navigation Styles */
+nav {
+    background-color: red;
+}
+
 .banner nav {
     display: flex;
-    gap: 15px; /* Space between navigation links */
-    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
-    padding: 10px 20px;
-    border-radius: 5px;
-    margin-top: 10px;
+    justify-content: space-between; /* Space between links */
+    background-color: #fff; /* Solid white background for the navbar */
+    padding: 10px 50px; /* More padding for a clean layout */
+    border-radius: 25px; /* Rounded corners for the navbar */
+    /* margin-top: 20px; */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
 }
 
 .banner nav a {
-    color: white;
+    color: #333; /* Dark color for the text */
     text-decoration: none;
-    font-size: 1em;
-    padding: 8px 15px;
-    border-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.1); /* Light semi-transparent */
-    transition: background-color 0.3s ease;
+    font-weight: bold; /* Bold text for readability */
+    font-size: 1.1em;
+    padding: 10px 20px; /* Adequate padding for each link */
+    border-radius: 20px; /* Rounded corners for links */
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .banner nav a:hover {
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: #f1f1f1; /* Light grey on hover */
+    transform: scale(1.05); /* Subtle scaling effect on hover */
 }
 
 /* Admin Dropdown */
 .admin-dropdown {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.admin-btn {
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+    padding: 8px 15px;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.admin-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Lighter on hover */
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    right: 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.dropdown-content a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 8px 10px;
+}
+
+.dropdown-content a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.admin-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+
+/* Admin Dropdown */
+/* .admin-dropdown {
     position: absolute;
     top: 10px;
     right: 20px;
@@ -91,7 +121,7 @@ body {
 
 .admin-dropdown:hover .dropdown-content {
     display: block;
-}
+} */
 
 .topic h1{
     font-size: 2em;

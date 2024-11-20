@@ -25,16 +25,16 @@ $admin = $result_admin->fetch_assoc();
     <link rel="stylesheet" href="style_ZooKeep.css">
 </head>
 <body>
+    <nav>
+        <a href="zookeeper_ad.php">Zoo Keeper</a>
+        <a href="animal_ad.php">Animal</a>
+        <a href="zone_ad.php">Zone</a>
+        <a href="ingredient_ad.php">Ingredient</a>
+        <a href="meal_ad.php">Meal</a>
+    </nav>
     <!-- Banner with Navigation Links -->
     <div class="banner">
         <h1>Himalayan Zoo of Mount Olympus and Mount Liangshan</h1>
-        <nav>
-            <a href="zookeeper_ad.php">Zoo Keeper</a>
-            <a href="animal_ad.php">Animal</a>
-            <a href="zone_ad.php">Zone</a>
-            <a href="ingredient_ad.php">Ingredient</a>
-            <a href="meal_ad.php">Meal</a>
-        </nav>
         <!-- Admin Dropdown -->
         <div class="admin-dropdown">
             <button class="admin-btn"><?= $admin['Ad_name']; ?>▼</button>
