@@ -62,8 +62,9 @@ body {
 }
 
 .admin-btn {
-    background: none;
-    border: none;
+    background:  rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+    padding: 5px;
     color: white;
     font-size: 1em;
     cursor: pointer;

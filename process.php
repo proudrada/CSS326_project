@@ -1,17 +1,6 @@
 <?php
 require_once('connect.php');
-// Query to fetch zookeeper data
-// $query_zk = "SELECT ZK_ID FROM zookeeper";
-// $query_ad = "SELECT Ad_ID FROM admin";
-// $result_zk = $mysqli->query($query);
-// $result_ad = $mysqli->query($query);
-// // Check if query execution was successful
-// if (!$result) {
-//     die("Query failed: " . $mysqli->error);
-// }
-// ?>
-
-<?php
+session_start();
 // รับค่าจากฟอร์ม
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $code = trim($_POST['code']); // กำจัดช่องว่างรอบๆ
@@ -37,9 +26,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     // ถ้าเจอรหัสในตาราง zookeeper
     elseif ($result_zk->num_rows > 0) {
-        header("Location: ZooKeeper_staff.php?name=" . urlencode($code));
+        $_SESSION['ZK_ID'] = $code;
+        header("Location: ZooKeeper_staff.php");
         exit();
     }
+    elseif (empty($code)) {
+        header("Location: homepage.php?error=invalid");
+        exit();
+    }   
     // ถ้ารหัสไม่ถูกต้อง
     else {
         header("Location: homepage.php?error=invalid");
@@ -48,3 +42,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 } else {
     echo "No data submitted.";
 }
+?>

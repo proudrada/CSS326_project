@@ -1,15 +1,17 @@
-/* General Styles */
+html{
+    max-height: 1000px;
+}
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #3187cb;
+    background-color: #e9b166;
     color: #333;
 }
 
 /* Banner */
 .banner {
-    background-image: url('img/bg_zone.jpg');
+    background-image: url('img/bg_animal.jpg');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -46,7 +48,7 @@ body {
     font-size: 1em;
     padding: 8px 15px;
     border-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.1); /* Light semi-transparent */
+    background-color: rgba(54, 33, 33, 0.1); /* Light semi-transparent */
     transition: background-color 0.3s ease;
 }
 
@@ -93,7 +95,7 @@ body {
     display: block;
 }
 
-.topic h1{
+h1 {
     font-size: 2em;
     text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -101,8 +103,7 @@ body {
     margin: 10px;
 }
 
-/* Cards Container */
-.cards-container {
+.animal-container {
     display: flex;
     justify-content: center;
     gap: 20px;
@@ -110,10 +111,10 @@ body {
     flex-wrap: wrap;
 }
 
-.card {
+.animal-card {
     background-color: white;
     border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     padding: 20px;
     width: 250px;
     text-align: center;
@@ -121,36 +122,13 @@ body {
     flex-direction: column;
 }
 
-/* Profile Image Styles */
-.profile-img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin: 0; /* Remove margin to remove gap */
-}
-
-/* Card Content */
-.card h2 {
+.animal-card h2 {
     font-size: 1.5em;
     margin: 10px 0;
 }
 
-.card p {
+.animal-card p {
     font-size: 0.9em;
     margin: 5px 0;
     color: #666;
-}
-
-/* Edit Icon */
-.edit-icon {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    color: #666;
-    font-size: 1.2em;
-    text-decoration: none;
-}
-
-.edit-icon:hover {
-    color: #333;
 }

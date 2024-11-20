@@ -1,15 +1,21 @@
 <?php
 require_once('connect.php');
+session_start();
 
-// Query to fetch zookeeper data (you can modify the WHERE clause for a specific zookeeper)
-$query = "SELECT * FROM zookeeper";
-$result = $mysqli->query($query);
-
-// Check if query execution was successful
-if (!$result) {
-    die("Query failed: " . $mysqli->error);
+// ตรวจสอบว่ามี ID ใน session หรือไม่
+if (!isset($_SESSION['ZK_ID'])) {
+    header("Location: homepage.php?error=not_logged_in");
+    exit();
 }
-// Fetch zookeeper data
+
+$zookeeperID = $_SESSION['ZK_ID'];
+
+// Query เพื่อดึงข้อมูล zookeeper
+$query = "SELECT * FROM zookeeper WHERE ZK_ID = ?";
+$stmt = $mysqli->prepare($query);
+$stmt->bind_param("s", $zookeeperID);
+$stmt->execute();
+$result = $stmt->get_result();
 $zookeeper = $result->fetch_assoc();
 ?>
 
@@ -27,7 +33,7 @@ $zookeeper = $result->fetch_assoc();
         <h1>Himalayan Zoo of Mount Olympus and Mount Liangshan</h1>
         <nav>
             <a href="ZooKeeper_staff.php">Your profile</a>
-            <a href="animal_ad.php">Animal</a> <!--ยังไม่ได้เชื่อมและสร้าง -->
+            <a href="animal_staff.php">Animal</a> 
             <a href="zone_ad.php">Zone</a> <!--ยังไม่ได้เชื่อมและสร้าง -->
             <a href="ingredient_ad.php">Ingredient</a> <!--ยังไม่ได้เชื่อมและสร้าง -->
             <a href="meal_ad.php">Meal</a> <!--ยังไม่ได้เชื่อมและสร้าง -->
@@ -48,11 +54,11 @@ $zookeeper = $result->fetch_assoc();
             <div class="profile-text">
                 <h1>Welcome! <?= $zookeeper['ZKFName'] . " " . $zookeeper['ZKLName']; ?></h1>
                 <div class = "profile-info">
-                    <p>Zookeeper ID: <?= $zookeeper['ZK_ID']; ?></p>
-                    <p>Date of birth: <?= $zookeeper['ZDate_of_birth']; ?></p>
-                    <p>Sex: <?= $zookeeper['ZSex']; ?></p>
+                    <p>Zookeeper ID: <?= ($zookeeper['ZK_ID']); ?></p>
+                    <p>Date of birth: <?= ($zookeeper['ZDate_of_birth']); ?></p>
+                    <p>Sex: <?= ($zookeeper['ZSex']); ?></p>
                     <p>Salary: $<?= number_format($zookeeper['Salary'], 2); ?></p>
-                    <p>Animal ID: <?= $zookeeper['A_ID']; ?></p>
+                    <p>Animal ID: <?= ($zookeeper['A_ID']); ?></p>
                     <p>Age: 
                         <?php 
                         $dob = $zookeeper['ZDate_of_birth'];
@@ -73,3 +79,4 @@ $zookeeper = $result->fetch_assoc();
     </div>
 </body>
 </html>
+
