@@ -58,8 +58,13 @@ if (!$result_animals) {
             <input type="time" id="Time" name="Time" required>
 
             <div class="buttons">
+<<<<<<< HEAD
                 <button type="button" onclick="window.location.href='meal_ad.php'" class="cancel-button">Cancel</button>
                 <button type="submit" class="add-button">Add Meal</button>
+=======
+                <button type="submit" class="add-button">Add Ingredient</button>
+                <button type="button" onclick="window.location.href='meal_ad.php'" class="cancel-button">Cancel</button>
+>>>>>>> e3f0a3b1a876aa90e555c1f65013746e43742a7f
             </div>
         </form>
     </div>

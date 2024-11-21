@@ -17,8 +17,9 @@ nav {
     background-color: rgba(3, 0, 0, 0.5); /* Semi-transparent background */
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Shadow for depth */
     display: flex; /* Use flexbox for alignment */
-    justify-content: space-between; /* Space between left links and admin button */
+    justify-content: space-around; /* Space between left links and admin button */
     align-items: center; /* Vertical centering */
+    margin-right: 10px;
     padding: 10px 30px; /* Padding for spacing */
 }
 
@@ -89,6 +90,7 @@ nav a:hover {
 /* Admin Dropdown */
 .admin-dropdown {
     position: relative; /* For dropdown positioning */
+    
 }
 
 .admin-btn {
@@ -116,13 +118,14 @@ nav a:hover {
     border-radius: 10px; /* Smooth corners */
     z-index: 10; /* Keeps it on top of other elements */
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Light shadow for depth */
-    width: 150px; /* Prevents the dropdown from getting too wide */
+    width: 80px; /* Prevents the dropdown from getting too wide */
 }
 
 .dropdown-content a {
     color: white;
     text-decoration: none;
     padding: 8px 10px;
+    font-size: 13px;
     display: block; /* Each link on a new line */
     transition: background-color 0.2s ease;
 }

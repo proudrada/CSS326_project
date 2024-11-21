@@ -94,8 +94,8 @@ if (!$result_zone) {
 
         <!-- Form Submit and Cancel Buttons -->
         <div class="buttons">
+            <button type="submit" class="add-button">Add Animal</button>
             <button type="button" onclick="window.location.href='animal_ad.php'" class="cancel-button">Cancel</button> <!-- Cancel button to redirect -->
-            <button type="submit" class="add-button">Add Animal</button> <!-- Submit button to submit the form -->
         </div>
     </form>
     </div>
