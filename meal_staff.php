@@ -1,19 +1,33 @@
 <?php
 require_once('connect.php');
+session_start();
+
+if (!isset($_SESSION['ZK_ID'])) {
+    header("Location: homepage.php?error=not_logged_in");
+    exit();
+}
+
+$zookeeperID = $_SESSION['ZK_ID'];
+
 // Query to fetch zookeeper data
-$query = "SELECT * FROM meal";
-$query_admin = "SELECT * FROM admin";
-$result = $mysqli->query($query);
+$query = "SELECT * FROM meal,animal WHERE animal.A_ID = meal.A_ID AND ZK_ID = '$zookeeperID'";
+// $query = "SELECT * FROM animal WHERE ZK_ID = '$zookeeperID'";
+$query_zk = "SELECT * FROM zookeeper WHERE ZK_ID = '$zookeeperID'";
 // Check if query execution was successful
+$result = $mysqli->query($query);
 if (!$result) {
     die("Query failed: " . $mysqli->error);
 }
-$result_admin = $mysqli->query($query_admin);
-// Check if query execution was successful
-if (!$result_admin) {
+// $result_ani = $mysqli->query($query_ani);
+// if (!$result_ani) {
+//     die("Query failed: " . $mysqli->error);
+// }
+$result_zk = $mysqli->query($query_zk);
+if (!$result_zk) {
     die("Query failed: " . $mysqli->error);
 }
-$admin = $result_admin->fetch_assoc();
+// $animal = $result_ani->fetch_assoc();
+$zookeeper = $result_zk->fetch_assoc();
 ?>
 
 <!DOCTYPE html>
@@ -29,20 +43,20 @@ $admin = $result_admin->fetch_assoc();
     <div class="banner">
         <h1>Himalayan Zoo of Mount Olympus and Mount Liangshan</h1>
         <nav>
-            <a href="zookeeper_ad.php">Zoo Keeper</a>
-            <a href="animal_ad.php">Animal</a>
+            <a href="zookeeper_staff.php">Zoo Keeper</a>   
+            <a href="animal_staff.php">Animal</a>
             <a href="zone_ad.php">Zone</a>
             <a href="ingredient_ad.php">Ingredient</a>
-            <a href="meal_ad.php">Meal</a>
+            <a href="meal_staff.php">Meal</a>
         </nav>
         <div class="admin-dropdown">
-            <button class="admin-btn"><?= $admin['Ad_name']; ?>▼</button>
-                <div class="dropdown-content">
-                    <a href="homepage.php">Log-out</a>
-                </div>
+            <button class="admin-btn"><?= $zookeeper['ZKFName'] . "_" . $zookeeper['ZK_ID']; ?>▼</button>
+            <div class="dropdown-content">
+                <a href="homepage.php">Log-out</a>
+            </div>
         </div>
     </div>
-    
+
     <div class="topic">
         <h1>Meal</h1>
     </div>
@@ -69,7 +83,7 @@ $admin = $result_admin->fetch_assoc();
                             <td>
                                 <a href='delete_meal.php?Meal_code={$row['Meal_code']}' class='delete-button'>Delete</a>
                             </td>
-                          </tr>";
+                        </tr>";
                 }
             } else {
                 echo "<tr><td colspan='5'>No ingredients found.</td></tr>";
@@ -77,8 +91,10 @@ $admin = $result_admin->fetch_assoc();
             ?>
         </table>
         <div class="add-button-container">
-            <button onclick="window.location.href='form_add_meal.php'" class="add-button">+</button>
-        </div>
+                <button onclick="window.location.href='form_add_meal_staff.php'" class="add-button">+</button>
+        </div>            
+           
     </div>
+
 </body>
 </html>

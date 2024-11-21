@@ -45,7 +45,7 @@ $zookeeper = $result_zk->fetch_assoc();
             <a href="animal_staff.php">Animal</a>
             <a href="zone_ad.php">Zone</a>
             <a href="ingredient_ad.php">Ingredient</a>
-            <a href="meal_ad.php">Meal</a>
+            <a href="meal_staff.php">Meal</a>
         </nav>
         <div class="admin-dropdown">
             <button class="admin-btn"><?= $zookeeper['ZKFName'] . "_" . $zookeeper['ZK_ID']; ?>▼</button>

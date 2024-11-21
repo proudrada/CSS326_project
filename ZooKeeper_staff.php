@@ -17,6 +17,19 @@ $stmt->bind_param("s", $zookeeperID);
 $stmt->execute();
 $result = $stmt->get_result();
 $zookeeper = $result->fetch_assoc();
+
+$query_animal = "SELECT A_ID FROM animal WHERE ZK_ID = ?";
+$stmt_animal = $mysqli->prepare($query_animal);
+$stmt_animal->bind_param("s", $zookeeperID);
+$stmt_animal->execute();
+$result_animal = $stmt_animal->get_result();
+
+// Initialize animal ID array
+$animal_ids = [];
+while ($animal_row = $result_animal->fetch_assoc()) {
+    $animal_ids[] = $animal_row['A_ID'];  // Store animal IDs
+}
+$animal_ids_str = implode(', ', $animal_ids);  // Convert array to comma-separated string
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +49,7 @@ $zookeeper = $result->fetch_assoc();
             <a href="animal_staff.php">Animal</a> 
             <a href="zone_ad.php">Zone</a> <!--ยังไม่ได้เชื่อมและสร้าง -->
             <a href="ingredient_ad.php">Ingredient</a> <!--ยังไม่ได้เชื่อมและสร้าง -->
-            <a href="meal_ad.php">Meal</a> <!--ยังไม่ได้เชื่อมและสร้าง -->
+            <a href="meal_staff.php">Meal</a> 
         </nav>
         <!-- Admin Dropdown -->
         <div class="admin-dropdown">
@@ -48,16 +61,18 @@ $zookeeper = $result->fetch_assoc();
     </div>
 
     <div class="profile-container">
-        <?php if ($zookeeper): ?>
+        <?php if ($zookeeper): 
+            
+            ?>
             <img src="<?= $zookeeper['image_path']; ?>" alt="<?= $zookeeper['ZKFName']; ?>">
             <div class="profile-text">
-                <h1>Welcome! <?= $zookeeper['ZKFName'] . " " . $zookeeper['ZKLName']; ?></h1>
+                <h1>Welcome! <?= $zookeeper['ZKFName'] . " " . $zookeeper['ZKLName']; ?></h1>              
                 <div class = "profile-info">
                     <p>Zookeeper ID: <?= ($zookeeper['ZK_ID']); ?></p>
                     <p>Date of birth: <?= ($zookeeper['ZDate_of_birth']); ?></p>
                     <p>Sex: <?= ($zookeeper['ZSex']); ?></p>
                     <p>Salary: $<?= number_format($zookeeper['Salary']); ?></p>
-                    <p>Animal ID: <?= ($zookeeper['A_ID']); ?></p>
+                    <p>Animal ID(s): <span contenteditable='true'><?= $animal_ids_str ?></span></p>
                     <p>Age: 
                         <?php 
                         $dob = $zookeeper['ZDate_of_birth'];
@@ -72,6 +87,7 @@ $zookeeper = $result->fetch_assoc();
                     </p>
                 </div>
             </div>
+        
         <?php else: ?>
             <p>No zookeeper data found.</p>
         <?php endif; ?>
