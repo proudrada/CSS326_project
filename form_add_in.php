@@ -23,8 +23,8 @@
             <input type="date" id="expiration_date" name="expiration_date" required>
 
             <div class="buttons">
-                <button type="button" onclick="window.location.href='ingredient_ad.php'" class="cancel-button">Cancel</button>
                 <button type="submit" class="add-button">Add Ingredient</button>
+                <button type="button" onclick="window.location.href='ingredient_ad.php'" class="cancel-button">Cancel</button>
             </div>
         </form>
     </div>
