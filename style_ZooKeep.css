@@ -28,10 +28,15 @@ nav a {
     color: #ffffff; /* Neutral dark text color */
     text-decoration: none;
     font-weight: bold; /* Bold links */
-    font-size: 1em;
+    font-size: 1.2em;
     padding: 10px 20px; /* Padding for touch-friendly links */
     border-radius: 20px; /* Smooth design */
     transition: all 0.3s ease; /* Smooth hover animation */
+}
+
+.zk{
+    color: #d9cdb4;
+    text-decoration:none;
 }
 
 nav a:hover {

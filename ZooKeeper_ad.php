@@ -26,7 +26,7 @@ $admin = $result_admin->fetch_assoc();
 </head>
 <body>
     <nav>
-        <a href="zookeeper_ad.php">Zoo Keeper</a>
+        <a href="zookeeper_ad.php" class="zk"><u>Zoo Keeper</u></a>
         <a href="animal_ad.php">Animal</a>
         <a href="zone_ad.php">Zone</a>
         <a href="ingredient_ad.php">Ingredient</a>
