@@ -56,7 +56,7 @@ $zookeeper = $result->fetch_assoc();
                     <p>Zookeeper ID: <?= ($zookeeper['ZK_ID']); ?></p>
                     <p>Date of birth: <?= ($zookeeper['ZDate_of_birth']); ?></p>
                     <p>Sex: <?= ($zookeeper['ZSex']); ?></p>
-                    <p>Salary: $<?= number_format($zookeeper['Salary'], 2); ?></p>
+                    <p>Salary: $<?= number_format($zookeeper['Salary']); ?></p>
                     <p>Animal ID: <?= ($zookeeper['A_ID']); ?></p>
                     <p>Age: 
                         <?php 
