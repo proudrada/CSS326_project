@@ -21,12 +21,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // ถ้าเจอรหัสในตาราง admin
     if ($result_ad->num_rows > 0) {
+        $code = $_SESSION['ZK_ID'];
         header("Location: ZooKeeper_ad.php?name=admin");
         exit();
     }
     // ถ้าเจอรหัสในตาราง zookeeper
     elseif ($result_zk->num_rows > 0) {
         $_SESSION['ZK_ID'] = $code;
+        $code = $_SESSION['ZK_ID'];
         header("Location: ZooKeeper_staff.php");
         exit();
     }
