@@ -22,7 +22,7 @@ $result_zk = $mysqli->query($query_zk);
 if (!$result_zk) {
     die("Query failed: " . $mysqli->error);
 }
-// $animal = $result_ani->fetch_assoc();
+
 $zookeeper = $result_zk->fetch_assoc();
 ?>
 

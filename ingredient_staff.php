@@ -1,19 +1,26 @@
 <?php
 require_once('connect.php');
+session_start();
+
+if (!isset($_SESSION['ZK_ID'])) {
+    header("Location: homepage.php?error=not_logged_in");
+    exit();
+}
+$zookeeperID = $_SESSION['ZK_ID'];
+
 // Query to fetch zookeeper data
 $query = "SELECT * FROM ingredient";
-$query_admin = "SELECT * FROM admin";
+$query_zk = "SELECT * FROM zookeeper";
 $result = $mysqli->query($query);
 // Check if query execution was successful
 if (!$result) {
     die("Query failed: " . $mysqli->error);
 }
-$result_admin = $mysqli->query($query_admin);
-// Check if query execution was successful
-if (!$result_admin) {
+$result_zk = $mysqli->query($query_zk);
+if (!$result_zk) {
     die("Query failed: " . $mysqli->error);
 }
-$admin = $result_admin->fetch_assoc();
+$zookeeper = $result_zk->fetch_assoc();
 ?>
 
 <!DOCTYPE html>

@@ -1,5 +1,14 @@
 <?php
 require_once('connect.php');
+session_start();
+
+$code = isset($_SESSION['ZK_ID']) ? $_SESSION['ZK_ID'] : null;
+
+$zk_id = $mysqli->query("SELECT * FROM zookeeper");
+$ad_id = $mysqli->query("SELECT * FROM admin");
+
+$zk_result = $zk_id ? $zk_id->fetch_assoc() : null;
+$ad_result = $ad_id ? $ad_id->fetch_assoc() : null;
 
 // Check if the form was submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -15,8 +24,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Execute the query
     if ($mysqli->query($query) === TRUE) {
-        // Redirect back to the ingredient_ad.php page with a success message
-        header("Location: ingredient_ad.php?message=success");
+        if ($ad_result && $zk_result) {
+            if ($code == $ad_result['Ad_ID']) {
+                header("Location: ingredient_ad.php?message=success");
+            } elseif ($code == $zk_result['ZK_ID']) {
+                header("Location: ingredient_staff.php?message=success");
+            }
+        }
         exit();
     } else {
         // Display an error message
