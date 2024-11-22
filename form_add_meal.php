@@ -1,8 +1,8 @@
 <?php
 require_once('connect.php');
 // Fetch zookeeper data for the dropdown
-$query_ingredients = "SELECT In_ID FROM ingredient";
-$query_animals = "SELECT A_ID FROM animal";
+$query_ingredients = "SELECT In_ID,In_type FROM ingredient";
+$query_animals = "SELECT A_ID,A_name FROM animal";
 
 // Execute both queries
 $result_ingredients = $mysqli->query($query_ingredients);
@@ -36,7 +36,9 @@ if (!$result_animals) {
                 <option value="" disabled selected>Select Animal</option>
                 <?php
                 while ($row = $result_animals->fetch_assoc()) {
-                    echo "<option value=\"{$row['A_ID']}\">{$row['A_ID']}</option>";
+                    $A_ID = $row['A_ID']; // Get the Zookeeper ID
+                    $A_name = $row['A_name']; // Concatenate First and Last name of the Zookeeper
+                    echo "<option value='$A_ID'>$A_ID - $A_name</option>";
                 }
                 ?>
             </select>
@@ -46,7 +48,9 @@ if (!$result_animals) {
                 <option value="" disabled selected>Select Ingredient</option>
                 <?php
                 while ($row = $result_ingredients->fetch_assoc()) {
-                    echo "<option value=\"{$row['In_ID']}\">{$row['In_ID']}</option>";
+                    $In_ID = $row['In_ID']; // Get the Zookeeper ID
+                    $In_type = $row['In_type']; // Concatenate First and Last name of the Zookeeper
+                    echo "<option value='$In_ID'>$In_ID - $In_type</option>";
                 }
                 ?>
             </select>
@@ -58,13 +62,8 @@ if (!$result_animals) {
             <input type="time" id="Time" name="Time" required>
 
             <div class="buttons">
-<<<<<<< HEAD
                 <button type="button" onclick="window.location.href='meal_ad.php'" class="cancel-button">Cancel</button>
                 <button type="submit" class="add-button">Add Meal</button>
-=======
-                <button type="submit" class="add-button">Add Ingredient</button>
-                <button type="button" onclick="window.location.href='meal_ad.php'" class="cancel-button">Cancel</button>
->>>>>>> e3f0a3b1a876aa90e555c1f65013746e43742a7f
             </div>
         </form>
     </div>
