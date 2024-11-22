@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_FILES['animal_image']) && $_FILES['animal_image']['error'] === 0) {
         $image_tmp_name = $_FILES['animal_image']['tmp_name'];
         $image_extension = pathinfo($_FILES['animal_image']['name'], PATHINFO_EXTENSION);
-        $image_path = 'img/' . $a_id . '.' . $image_extension;
+        $image_path = 'img/' . $a_name . '.' . $image_extension;
 
         // Move the uploaded file to the designated folder
         if (!move_uploaded_file($image_tmp_name, $image_path)) {
