@@ -34,25 +34,23 @@ $zookeeper = $result_zk->fetch_assoc();
     <link rel="stylesheet" href="style_animal.css">
 </head>
 <body>
-    <?php
-    // Include a common header or navigation file if needed
-    ?>
-    <!-- Banner with Navigation Links -->
-    <div class="banner">
-        <h1>Himalayan Zoo of Mount Olympus and Mount Liangshan</h1>
-        <nav>
-            <a href="zookeeper_staff.php">Zoo Keeper</a>   
-            <a href="animal_staff.php">Animal</a>
-            <a href="zone_ad.php">Zone</a>
-            <a href="ingredient_ad.php">Ingredient</a>
-            <a href="meal_staff.php">Meal</a>
-        </nav>
+    <nav>
+        <a href="zookeeper_staff.php">Your profile</a>
+        <a href="animal_staff.php" class="animal"><u>Animal</u></a>
+        <a href="zone_staff.php">Zone</a>
+        <a href="ingredient_staff.php">Ingredient</a>
+        <a href="meal_staff.php">Meal</a>
+        <!-- Admin Dropdown -->
         <div class="admin-dropdown">
             <button class="admin-btn"><?= $zookeeper['ZKFName'] . "_" . $zookeeper['ZK_ID']; ?>▼</button>
             <div class="dropdown-content">
                 <a href="homepage.php">Log-out</a>
             </div>
         </div>
+    </nav>
+    <!-- Banner with Navigation Links -->
+    <div class="banner">
+        <h1>Himalayan Zoo of Mount Olympus and Mount Liangshan</h1>
     </div>
 
     <div class="topic">
