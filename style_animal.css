@@ -11,6 +11,43 @@ body {
 }
 
 /* Banner */
+/* Navigation Styles */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%; /* Full width */
+    z-index: 1000; /* Keeps it above other elements */
+    background-color: rgba(3, 0, 0, 0.5); /* Semi-transparent background */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    display: flex; /* Use flexbox for alignment */
+    justify-content: space-around; /* Space between left links and admin button */
+    align-items: center; /* Vertical centering */
+    margin-right: 10px;
+    padding: 10px 30px; /* Padding for spacing */
+}
+
+/* Links */
+nav a {
+    color: #ffffff; /* Neutral dark text color */
+    text-decoration: none;
+    font-weight: bold; /* Bold links */
+    font-size: 1.2em;
+    padding: 10px 20px; /* Padding for touch-friendly links */
+    border-radius: 20px; /* Smooth design */
+    transition: all 0.3s ease; /* Smooth hover animation */
+}
+
+.zk{
+    color: #d9cdb4;
+    text-decoration:none;
+}
+
+nav a:hover {
+    background-color: #463d3d; /* Light grey background */
+    transform: scale(1.1); /* Slightly enlarges link */
+}
+
 .banner {
     background-image: url('img/bg_animal.jpg');
     background-size: cover;
@@ -36,64 +73,79 @@ body {
 
 .banner nav {
     display: flex;
-    gap: 15px; /* Space between navigation links */
-    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
-    padding: 10px 20px;
-    border-radius: 5px;
-    margin-top: 10px;
+    justify-content: space-between; /* Space between links */
+    background-color: #fff; /* Solid white background for the navbar */
+    padding: 10px 50px; /* More padding for a clean layout */
+    border-radius: 25px; /* Rounded corners for the navbar */
+    margin-top: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
 }
 
 .banner nav a {
-    color: white;
+    color: #333; /* Dark color for the text */
     text-decoration: none;
-    font-size: 1em;
-    padding: 8px 15px;
-    border-radius: 5px;
-    background-color: rgba(54, 33, 33, 0.1); /* Light semi-transparent */
-    transition: background-color 0.3s ease;
+    font-weight: bold; /* Bold text for readability */
+    font-size: 1.1em;
+    padding: 10px 20px; /* Adequate padding for each link */
+    border-radius: 20px; /* Rounded corners for links */
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .banner nav a:hover {
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: #f1f1f1; /* Light grey on hover */
+    transform: scale(1.05); /* Subtle scaling effect on hover */
 }
 
 /* Admin Dropdown */
 .admin-dropdown {
-    position: absolute;
-    top: 10px;
-    right: 20px;
+    position: relative; /* For dropdown positioning */
+    
 }
 
 .admin-btn {
-    background:  rgba(0, 0, 0, 0.8);
-    border-radius: 5px;
-    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.8); /* Dark background */
     color: white;
     font-size: 1em;
+    padding: 8px 15px;
+    border-radius: 10px; /* Matches design */
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
+.admin-btn:hover {
+    background-color: rgba(50, 50, 50, 0.8); /* Darker on hover */
+}
+
+/* Dropdown Content */
 .dropdown-content {
-    display: none;
+    display: none; /* Hidden by default */
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.8);
-    right: 0;
-    padding: 5px;
-    border-radius: 5px;
+    top: 100%; /* Directly below the admin button */
+    right: 0; /* Align dropdown with the admin button */
+    background-color: rgba(0, 0, 0, 0.9); /* Dark background */
+    padding: 10px;
+    border-radius: 10px; /* Smooth corners */
+    z-index: 10; /* Keeps it on top of other elements */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Light shadow for depth */
+    width: 80px; /* Prevents the dropdown from getting too wide */
 }
 
 .dropdown-content a {
     color: white;
     text-decoration: none;
-    display: block;
+    padding: 8px 10px;
+    font-size: 13px;
+    display: block; /* Each link on a new line */
+    transition: background-color 0.2s ease;
 }
 
 .dropdown-content a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.2); /* Lighter hover effect */
 }
 
+/* Show dropdown on hover */
 .admin-dropdown:hover .dropdown-content {
-    display: block;
+    display: block; /* Makes dropdown visible on hover */
 }
 
 .topic h1{

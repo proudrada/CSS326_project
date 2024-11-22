@@ -41,16 +41,12 @@ $animal_ids_str = implode(', ', $animal_ids);  // Convert array to comma-separat
     <link rel="stylesheet" href="style_ZooKeep_Staff.css"> <!-- Link to external CSS file -->
 </head>
 <body>
-    <!-- Banner -->
-    <div class="banner">
-        <h1>Himalayan Zoo of Mount Olympus and Mount Liangshan</h1>
-        <nav>
-            <a href="ZooKeeper_staff.php">Your profile</a>
-            <a href="animal_staff.php">Animal</a> 
-            <a href="zone_ad.php">Zone</a> <!--ยังไม่ได้เชื่อมและสร้าง -->
-            <a href="ingredient_ad.php">Ingredient</a> <!--ยังไม่ได้เชื่อมและสร้าง -->
-            <a href="meal_staff.php">Meal</a> 
-        </nav>
+    <nav>
+        <a href="zookeeper_staff.php" class="zk"><u>Your profile</u></a>
+        <a href="animal_staff.php">Animal</a>
+        <a href="zone_staff.php">Zone</a>
+        <a href="ingredient_staff.php">Ingredient</a>
+        <a href="meal_staff.php">Meal</a>
         <!-- Admin Dropdown -->
         <div class="admin-dropdown">
             <button class="admin-btn"><?= $zookeeper['ZKFName'] . "_" . $zookeeper['ZK_ID']; ?>▼</button>
@@ -58,7 +54,12 @@ $animal_ids_str = implode(', ', $animal_ids);  // Convert array to comma-separat
                 <a href="homepage.php">Log-out</a>
             </div>
         </div>
+    </nav>
+    <!-- Banner with Navigation Links -->
+    <div class="banner">
+        <h1>Himalayan Zoo of Mount Olympus and Mount Liangshan</h1>
     </div>
+
 
     <div class="profile-container">
         <?php if ($zookeeper): 
