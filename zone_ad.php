@@ -26,21 +26,23 @@ $admin = $result_admin->fetch_assoc();
 </head>
 <body>
     <!-- Banner with Navigation Links -->
-    <div class="banner">
-        <h1>Himalayan Zoo of Mount Olympus and Mount Liangshan</h1>
-        <nav>
-            <a href="zookeeper_ad.php">Zoo Keeper</a>
-            <a href="animal_ad.php">Animal</a>
-            <a href="zone_ad.php">Zone</a>
-            <a href="ingredient_ad.php">Ingredient</a>
-            <a href="meal_ad.php">Meal</a>
-        </nav>
+    <nav>
+        <a href="zookeeper_ad.php">Zookeeper</a>
+        <a href="animal_ad.php">Animal</a>
+        <a href="zone_ad.php" class="zone"><u>Zone</u></a>
+        <a href="ingredient_ad.php">Ingredient</a>
+        <a href="meal_ad.php">Meal</a>
+        <!-- Admin Dropdown -->
         <div class="admin-dropdown">
             <button class="admin-btn"><?= $admin['Ad_name']; ?>▼</button>
                 <div class="dropdown-content">
                     <a href="homepage.php">Log-out</a>
                 </div>
         </div>
+    </nav>
+    <!-- Banner with Navigation Links -->
+    <div class="banner">
+        <h1>Himalayan Zoo of Mount Olympus and Mount Liangshan</h1>
     </div>
 
     <div class="topic">
