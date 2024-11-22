@@ -93,7 +93,7 @@ $admin = $result_admin->fetch_assoc();
                     <p>Salary: <span contenteditable='true'>\${$row['Salary']}</span></p>
                     <p>Animal ID(s): <span contenteditable='true'>{$animal_ids_str}</span></p>  <!-- Display Animal IDs -->
                     <p>Age: <span contenteditable='true'>{$age}</span></p>
-                    <a href='#' class='edit-icon' title='Edit'>&#9998;</a>
+                    <a href='edit_zookeep.php' class='edit-icon' title='Edit'>&#9998;</a>
                 </div>";
             }
         } else {
