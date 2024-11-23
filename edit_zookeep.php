@@ -21,7 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "Error uploading image.";
             exit();
         }
-    } else {
+    } 
+    else {
         // If no image is uploaded, set a default image
         $image_path = 'img/default-image.jpg';
     }
@@ -45,7 +46,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         echo "Error preparing query: " . $mysqli->error;
     }
-} else {
+} 
+else {
     echo "Invalid request method.";
 }
 ?>
