@@ -24,7 +24,7 @@
 
             <div class="buttons">
                 <button type="submit" class="add-button">Add Ingredient</button>
-                <button type="button" onclick="window.location.href='ingredient_staff.php'" class="cancel-button">Cancel</button>
+                <button type="button" onclick="window.location.href='ingredient_ad.php'" class="cancel-button">Cancel</button>
             </div>
         </form>
     </div>
