@@ -8,8 +8,8 @@
 </head>
 <body>
     <div class="container">
-        <h1>Create New Zookeeper</h1>
-        <form action="add_zookeep.php" method="POST" enctype="multipart/form-data">
+        <h1>Edit Zookeeper</h1>
+        <form action="edit_zookeep.php" method="POST" enctype="multipart/form-data">
             <div class="profile-image">
                 <label for="profile_image" class="image-upload-label">
                     <img src="placeholder.png" alt="Profile Placeholder" id="profile-preview">
@@ -42,7 +42,7 @@
             <input type="date" id="dob" name="dob" required>
 
             <div class="buttons">
-                <button type="submit" class="add-button">Add Zookeeper</button>
+                <button type="submit" class="add-button">Edit Zookeeper</button>
                 <button type="button" onclick="window.location.href='Zookeeper_ad.php'" class="cancel-button">Cancel</button>
             </div>
         </form>

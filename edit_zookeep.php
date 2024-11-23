@@ -2,7 +2,7 @@
 require('connect.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Ensure all form data is captured
+    // Retrieve and sanitize input values
     $zk_id = $mysqli->real_escape_string($_POST['zookeeper_id']);
     $zk_fname = $mysqli->real_escape_string($_POST['f_name']);
     $zk_lname = $mysqli->real_escape_string($_POST['l_name']);
@@ -10,7 +10,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $z_sex = $mysqli->real_escape_string($_POST['sex']);
     $salary = $mysqli->real_escape_string($_POST['salary']);
 
-    // Image upload handling
+    // Check if the zookeeper already exists (determine insert or update)
+    $result = $mysqli->query("SELECT * FROM zookeeper WHERE ZK_ID = '$zk_id'");
+    
+    // Handle image upload
+    $image_path = '';
     if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] === 0) {
         $image_tmp_name = $_FILES['profile_image']['tmp_name'];
         $image_extension = pathinfo($_FILES['profile_image']['name'], PATHINFO_EXTENSION);
@@ -21,30 +25,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "Error uploading image.";
             exit();
         }
-    } else {
-        // If no image is uploaded, set a default image
-        $image_path = 'img/default-image.jpg';
     }
 
-    // Prepare the SQL query
-    $stmt = $mysqli->prepare("UPDATE INTO zookeeper (ZK_ID, ZKFName, ZKLName, ZDate_of_birth, ZSex, Salary, image_path) 
-                              VALUES (?, ?, ?, ?, ?, ?, ?)");
-
-    if ($stmt) {
-        $stmt->bind_param("sssssis", $zk_id, $zk_fname, $zk_lname, $z_date_of_birth, $z_sex, $salary, $image_path);
-
-        if ($stmt->execute()) {
-            // Redirect to zookeeper management page with success message
-            header("Location: zookeeper_ad.php?message=added");
-            exit();
+    if ($result->num_rows > 0) {
+        // Update existing record
+        if ($image_path) {
+            // Update including image
+            $stmt = $mysqli->prepare("UPDATE zookeeper SET ZKFName=?, ZKLName=?, ZDate_of_birth=?, ZSex=?, Salary=?, image_path=? WHERE ZK_ID=?");
+            $stmt->bind_param("ssssiss", $zk_fname, $zk_lname, $z_date_of_birth, $z_sex, $salary, $image_path, $zk_id);
         } else {
-            echo "Error executing query: " . $stmt->error;
+            // Update without changing the image
+            $stmt = $mysqli->prepare("UPDATE zookeeper SET ZKFName=?, ZKLName=?, ZDate_of_birth=?, ZSex=?, Salary=? WHERE ZK_ID=?");
+            $stmt->bind_param("sssssi", $zk_fname, $zk_lname, $z_date_of_birth, $z_sex, $salary, $zk_id);
         }
-
-        $stmt->close();
     } else {
-        echo "Error preparing query: " . $mysqli->error;
+        // Insert new record if zookeeper does not exist
+        $stmt = $mysqli->prepare("INSERT INTO zookeeper (ZK_ID, ZKFName, ZKLName, ZDate_of_birth, ZSex, Salary, image_path) 
+                                  VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssis", $zk_id, $zk_fname, $zk_lname, $z_date_of_birth, $z_sex, $salary, $image_path);
     }
+
+    // Execute the query
+    if ($stmt && $stmt->execute()) {
+        header("Location: zookeeper_ad.php?message=success");
+        exit();
+    } else {
+        echo "Error executing query: " . ($stmt ? $stmt->error : $mysqli->error);
+    }
+
+    $stmt->close();
 } else {
     echo "Invalid request method.";
 }
