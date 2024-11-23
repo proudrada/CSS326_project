@@ -79,7 +79,7 @@ $admin = $result_admin->fetch_assoc();
         </table>
 
         <div class="add-button-container">
-            <button onclick="window.location.href='form_add_in.php'" class="add-button">+</button>
+            <button onclick="window.location.href='form_add_in.php?role=admin'" class="add-button">+</button>
         </div>
     </div>
 </body>

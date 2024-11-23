@@ -40,7 +40,7 @@ $zookeeper = $result_zk->fetch_assoc();
         <a href="meal_staff.php">Meal</a>
         <!-- Admin Dropdown -->
         <div class="admin-dropdown">
-            <button class="admin-btn"><?= $zookeeper['ZKFName'] . "_" . $zookeeper['ZK_ID']; ?>▼</button>
+            <button class="admin-btn"><?= $zookeeper['ZKFName'] . "_" . $zookeeper['ZK_ID'];?>▼</button>
             <div class="dropdown-content">
                 <a href="homepage.php">Log-out</a>
             </div>
@@ -85,7 +85,7 @@ $zookeeper = $result_zk->fetch_assoc();
         </table>
 
         <div class="add-button-container">
-            <button onclick="window.location.href='form_add_in.php'" class="add-button">+</button>
+            <button onclick="window.location.href='form_add_in.php?role=staff'" class="add-button">+</button>
         </div>
     </div>
 </body>
