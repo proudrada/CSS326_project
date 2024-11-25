@@ -1,3 +1,28 @@
+<?php
+require('connect.php');
+
+// Get Zookeeper ID from query string
+if (isset($_GET['ZK_ID'])) {
+    $zookeeper_id = $mysqli->real_escape_string($_GET['ZK_ID']);
+
+    // Query to fetch zookeeper details
+    $query = "SELECT * FROM zookeeper WHERE ZK_ID = ?";
+    $stmt = $mysqli->prepare($query);
+    $stmt->bind_param("s", $zookeeper_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $zookeeper = $result->fetch_assoc();
+
+    if (!$zookeeper) {
+        echo "Zookeeper not found.";
+        exit();
+    }
+} else {
+    echo "No Zookeeper ID provided.";
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,33 +38,33 @@
             <div class="profile-image">
                 <label for="profile_image" class="image-upload-label">
                     <img src="placeholder.png" alt="Profile Placeholder" id="profile-preview">
-                    <input type="file" id="profile_image" name="profile_image" accept="image/*" required onchange="previewImage(event)">
-                    <span>Select Profile Image</span>
+                    <input type="file" id="profile_image" name="profile_image" accept="image/*" onchange="previewImage(event)">
+                    <span>Change Profile Image</span>
                 </label>
-            </div>
+            </div>  
 
-            <label for="first name">First Name</label>
-            <input type="text" id="f_name" name="f_name" required>
+            <label for="f_name">First Name</label>
+            <input type="text" id="f_name" name="f_name" value="<?= htmlspecialchars($zookeeper['ZKFName']) ?>" required>
 
-            <label for="last name">Last Name</label>
-            <input type="text" id="l_name" name="l_name" required>
+            <label for="l_name">Last Name</label>
+            <input type="text" id="l_name" name="l_name" value="<?= htmlspecialchars($zookeeper['ZKLName']) ?>" required>
 
             <label for="zookeeper_id">Zookeeper ID</label>
-            <input type="text" id="zookeeper_id" name="zookeeper_id" required>
+            <input type="text" id="zookeeper_id" name="zookeeper_id" value="<?= htmlspecialchars($zookeeper['ZK_ID']) ?>" readonly>
 
             <label>Sex</label>
             <div class="radio-group">
-                <input type="radio" id="male" name="sex" value="Male" required>
+                <input type="radio" id="male" name="sex" value="Male" <?= ($zookeeper['ZSex'] === 'Male') ? 'checked' : '' ?>>
                 <label for="male">Male</label>
-                <input type="radio" id="female" name="sex" value="Female" required>
+                <input type="radio" id="female" name="sex" value="Female" <?= ($zookeeper['ZSex'] === 'Female') ? 'checked' : '' ?>>
                 <label for="female">Female</label>
             </div>
 
             <label for="salary">Salary</label>
-            <input type="text" id="salary" name="salary" required>
+            <input type="text" id="salary" name="salary" value="<?= htmlspecialchars($zookeeper['Salary']) ?>" required>
 
             <label for="dob">Date of Birth</label>
-            <input type="date" id="dob" name="dob" required>
+            <input type="date" id="dob" name="dob" value="<?= htmlspecialchars($zookeeper['ZDate_of_birth']) ?>" required>
 
             <div class="buttons">
                 <button type="submit" class="add-button">Edit Zookeeper</button>
@@ -47,21 +72,5 @@
             </div>
         </form>
     </div>
-
-    <script>
-        // JavaScript to preview the uploaded image
-        function previewImage(event) {
-            const file = event.target.files[0];
-            const preview = document.getElementById('profile-preview');
-
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    preview.src = e.target.result; // Set preview image source
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-    </script>
 </body>
 </html>

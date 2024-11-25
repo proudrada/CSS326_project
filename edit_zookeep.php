@@ -1,6 +1,10 @@
 <?php
 require('connect.php');
 
+// Enable error reporting for debugging
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve and sanitize input values
     $zk_id = $mysqli->real_escape_string($_POST['zookeeper_id']);
@@ -10,11 +14,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $z_sex = $mysqli->real_escape_string($_POST['sex']);
     $salary = $mysqli->real_escape_string($_POST['salary']);
 
-    // Check if the zookeeper already exists (determine insert or update)
+    // Check if the zookeeper exists
     $result = $mysqli->query("SELECT * FROM zookeeper WHERE ZK_ID = '$zk_id'");
-    
+    if (!$result || $result->num_rows === 0) {
+        echo "Zookeeper not found.";
+        exit();
+    }
+    $existing_row = $result->fetch_assoc();
+
     // Handle image upload
-    $image_path = '';
+    $image_path = $existing_row['image_path']; // Default to existing image
     if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] === 0) {
         $image_tmp_name = $_FILES['profile_image']['tmp_name'];
         $image_extension = pathinfo($_FILES['profile_image']['name'], PATHINFO_EXTENSION);
@@ -27,23 +36,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    if ($result->num_rows > 0) {
-        // Update existing record
-        if ($image_path) {
-            // Update including image
-            $stmt = $mysqli->prepare("UPDATE zookeeper SET ZKFName=?, ZKLName=?, ZDate_of_birth=?, ZSex=?, Salary=?, image_path=? WHERE ZK_ID=?");
-            $stmt->bind_param("ssssiss", $zk_fname, $zk_lname, $z_date_of_birth, $z_sex, $salary, $image_path, $zk_id);
-        } else {
-            // Update without changing the image
-            $stmt = $mysqli->prepare("UPDATE zookeeper SET ZKFName=?, ZKLName=?, ZDate_of_birth=?, ZSex=?, Salary=? WHERE ZK_ID=?");
-            $stmt->bind_param("sssssi", $zk_fname, $zk_lname, $z_date_of_birth, $z_sex, $salary, $zk_id);
-        }
-    } else {
-        // Insert new record if zookeeper does not exist
-        $stmt = $mysqli->prepare("INSERT INTO zookeeper (ZK_ID, ZKFName, ZKLName, ZDate_of_birth, ZSex, Salary, image_path) 
-                                  VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssssis", $zk_id, $zk_fname, $zk_lname, $z_date_of_birth, $z_sex, $salary, $image_path);
-    }
+    // Update existing record
+    $stmt = $mysqli->prepare(
+        "UPDATE zookeeper SET ZKFName=?, ZKLName=?, ZDate_of_birth=?, ZSex=?, Salary=?, image_path=? WHERE ZK_ID=?"
+    );
+    $stmt->bind_param("ssssiss", $zk_fname, $zk_lname, $z_date_of_birth, $z_sex, $salary, $image_path, $zk_id);
 
     // Execute the query
     if ($stmt && $stmt->execute()) {
