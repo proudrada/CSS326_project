@@ -1,0 +1,155 @@
+/* General body style */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #3187cb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: #3187cb(201, 177, 129);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: bold;
+    border-bottom: 1px solid #0d4789;
+    padding-bottom: 10px;
+}
+
+/* Profile image upload style */
+.profile-image {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-image label {
+    display: inline-block;
+    cursor: pointer;
+    color: #333;
+    font-size: 12px;
+}
+
+.profile-image img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 5px;
+    border: 1px solid #24283c;
+}
+
+.profile-image input[type="file"] {
+    display: none;
+}
+
+.profile-image span {
+    display: block;
+    background-color: #d6d9df;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* Form styles */
+form label {
+    display: block;
+    font-size: 14px;
+    color: #333;
+    margin-top: 10px;
+    text-align: left;
+}
+
+form input[type="text"],
+form input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #acc1d8;
+    border-radius: 5px;
+    background-color: #b4cbd9;
+    font-size: 14px;
+}
+
+/* Radio and Checkbox groups */
+.radio-group,
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: left;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.radio-group input[type="radio"],
+.checkbox-group input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+/* Button styles */
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.cancel-button,
+.add-button {
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.cancel-button {
+    background-color: #d6d9df;
+    color: #333;
+}
+
+.add-button {
+    background-color: #24243c;
+    color: white;
+}
+
+.profile-image {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.image-upload-label {
+    display: inline-block;
+    cursor: pointer;
+}
+
+#profile-preview {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+#profile_image {
+    display: none; /* Hide the file input */
+}
+
+.image-upload-label span {
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+}
