@@ -80,7 +80,7 @@ $admin = $result_admin->fetch_assoc();
                     <p>Zookeeper ID: <span contenteditable='true'>{$row['ZK_ID']}</span></p>
                     <p>Age: <span contenteditable='true'>$age</span></p>
                     <p>Zone: <span contenteditable='true'>{$row['Zone_name']}</span></p>
-                    <a href='#' class='edit-icon' title='Edit'>&#9998;</a>
+                    <a href='form_edit_ani.php?A_ID={$row['A_ID']}' class='edit-icon' title='Edit'>&#9998;</a>
                 </div>";
             }
         } else {
