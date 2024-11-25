@@ -8,6 +8,7 @@ if (!isset($_SESSION['ZK_ID'])) {
 }
 
 $zookeeperID = $_SESSION['ZK_ID'];
+$_SESSION['role'] = 'staff';
 
 // Query to fetch zookeeper data
 $query = "SELECT * FROM meal,animal WHERE animal.A_ID = meal.A_ID AND ZK_ID = '$zookeeperID'";

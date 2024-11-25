@@ -1,5 +1,7 @@
 <?php
 require_once('connect.php');
+$_SESSION['role'] = 'admin';
+
 // Query to fetch zookeeper data
 $query = "SELECT * FROM meal";
 $query_admin = "SELECT * FROM admin";
