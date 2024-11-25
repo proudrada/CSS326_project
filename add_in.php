@@ -2,51 +2,70 @@
 require_once('connect.php');
 session_start();
 
-$code = isset($_SESSION['ZK_ID']) ? $_SESSION['ZK_ID'] : null;
+// Initialize role variables and check for session variables
+$admin_code = isset($_SESSION['ADMIN_ID']) ? $_SESSION['ADMIN_ID'] : null;
+$zookeeper_code = isset($_SESSION['ZK_ID']) ? $_SESSION['ZK_ID'] : null;
 
-// Check if $code exists before querying
-if ($code) {
-    // Check if user is an admin
-    $ad_query = $mysqli->query("SELECT * FROM admin WHERE Ad_ID = '$code'");
+// Ensure both session variables don't exist simultaneously
+if ($admin_code && $zookeeper_code) {
+    // If both are set, we assume the zookeeper should have priority.
+    // Alternatively, you could check the last login or other business logic.
+    $zookeeper_code = null;  // Clear admin code to only keep zookeeper logged in
+}
+
+// Initialize role results
+$ad_result = null;
+$zk_result = null;
+
+// Check if admin is logged in
+if ($admin_code) {
+    $ad_query = $mysqli->query("SELECT * FROM admin WHERE Ad_ID = '$admin_code'");
     if ($ad_query && $ad_query->num_rows > 0) {
         $ad_result = $ad_query->fetch_assoc();
-    } else {
-        $ad_result = null;
     }
+}
 
-    // Check if user is a zookeeper only if not detected as admin
-    if (!$ad_result) {
-        $zk_query = $mysqli->query("SELECT * FROM zookeeper WHERE ZK_ID = '$code'");
-        $zk_result = ($zk_query && $zk_query->num_rows > 0) ? $zk_query->fetch_assoc() : null;
-    } else {
-        $zk_result = null;
+// Check if zookeeper is logged in
+if ($zookeeper_code) {
+    $zk_query = $mysqli->query("SELECT * FROM zookeeper WHERE ZK_ID = '$zookeeper_code'");
+    if ($zk_query && $zk_query->num_rows > 0) {
+        $zk_result = $zk_query->fetch_assoc();
     }
+}
+
+// If no session is found for either, redirect to login page
+if (!$admin_code && !$zookeeper_code) {
+    header("Location: login.php"); // Redirect to login if not logged in
+    exit();
 }
 
 // Check if the form was submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve and sanitize input values
-    $ingredient_id = $mysqli->real_escape_string($_POST['ingredient_id']);
-    $ingredient_type = $mysqli->real_escape_string($_POST['ingredient_type']);
-    $ingredient_amount = $mysqli->real_escape_string($_POST['ingredient_amount']);
-    $expiration_date = $mysqli->real_escape_string($_POST['expiration_date']);
+    $ingredient_id = $mysqli->real_escape_string(trim($_POST['ingredient_id']));
+    $ingredient_type = $mysqli->real_escape_string(trim($_POST['ingredient_type']));
+    $ingredient_amount = $mysqli->real_escape_string(trim($_POST['ingredient_amount']));
+    $expiration_date = $mysqli->real_escape_string(trim($_POST['expiration_date']));
 
-    // SQL query to insert the data into the ingredient table
+    if (empty($ingredient_id) || empty($ingredient_type) || empty($ingredient_amount) || empty($expiration_date)) {
+        echo "All fields are required.";
+        exit();
+    }
+
     $query = "INSERT INTO ingredient (In_ID, In_type, In_amount, Expiration_date) 
               VALUES ('$ingredient_id', '$ingredient_type', '$ingredient_amount', '$expiration_date')";
 
-    // Execute the query
     if ($mysqli->query($query) === TRUE) {
-        if ($ad_result) { // Admin role detected
+        // Redirect based on role
+        if ($ad_result) {
             header("Location: ingredient_ad.php?message=success");
             exit();
-        } elseif ($zk_result) { // Zookeeper role detected
+        } elseif ($zk_result) {
             header("Location: ingredient_staff.php?message=success");
             exit();
+        } else {
+            echo "User role not recognized.";
         }
     } else {
-        // Display an error message
         echo "Error: " . $query . "<br>" . $mysqli->error;
     }
 }
-?>

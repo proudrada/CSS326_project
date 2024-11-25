@@ -3,10 +3,10 @@ session_start();
 require_once('connect.php');
 
 // Default redirect if no session
-if (!isset($_SESSION['ZK_ID'])) {
-    header("Location: login.php");
-    exit();
-}
+// if (!isset($_SESSION['ZK_ID'])) {
+//     header("Location: login.php");
+//     exit();
+// }
 
 // Determine the role and set head
 $code = $_SESSION['ZK_ID'];
