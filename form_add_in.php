@@ -10,6 +10,7 @@ require_once('connect.php');
 
 // Determine the role and set head
 $code = $_SESSION['ZK_ID'];
+$_SESSION['role'] = $_GET['role'];
 $head = '';
 
 if (isset($_POST['cancel'])) {

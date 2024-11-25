@@ -5,6 +5,7 @@ require('connect.php');
 // Initialize variables for popup functionality
 $message = "";
 $showPopup = false;
+$role = $_SESSION['role'];
 
 // Check if the ingredient ID is provided via GET
 if (isset($_GET['In_ID']) && !empty($_GET['In_ID'])) {
@@ -36,8 +37,14 @@ if (isset($_GET['In_ID']) && !empty($_GET['In_ID'])) {
     }
 
     // Redirect to the ingredient_ad.php page with the message
-    header("Location: ingredient_ad.php?message=" . urlencode($message));
-    exit;
+    if ($role == 'staff'){
+        header("Location: ingredient_staff.php?message=" . urlencode($message));
+        exit();
+    } elseif ($role == 'admin') {
+        header("Location: ingredient_ad.php?message=" . urlencode($message));
+        exit();
+    }
+    
 }
 ?>
 
