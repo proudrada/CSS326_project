@@ -6,11 +6,11 @@ session_start();
 $role_code = isset($_SESSION['role']) ? $_SESSION['role'] : false;
 
 // Fetch admin and zookeeper data
-$zk_id = $mysqli->query("SELECT * FROM zookeeper");
-$ad_id = $mysqli->query("SELECT * FROM admin");
+// $zk_id = $mysqli->query("SELECT * FROM zookeeper");
+// $ad_id = $mysqli->query("SELECT * FROM admin");
 
-$zk_result = $zk_id ? $zk_id->fetch_assoc() : null;
-$ad_result = $ad_id ? $ad_id->fetch_assoc() : null;
+// $zk_result = $zk_id ? $zk_id->fetch_assoc() : null;
+// $ad_result = $ad_id ? $ad_id->fetch_assoc() : null;
 
 // Check if the form was submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
