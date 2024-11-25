@@ -3,7 +3,7 @@ require_once('connect.php');
 session_start();
 
 // Check if session variable exists
-$code = isset($_SESSION['ZK_ID']) ? $_SESSION['ZK_ID'] : null;
+$role_code = isset($_SESSION['role']) ? $_SESSION['role'] : false;
 
 // Fetch admin and zookeeper data
 $zk_id = $mysqli->query("SELECT * FROM zookeeper");
@@ -27,18 +27,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Execute the query
     if ($mysqli->query($query) === TRUE) {
-        // Redirect based on user role
-        if ($ad_result && $zk_result) {
-            if ($code == $ad_result['Ad_ID']) {
-                header("Location: meal_ad.php?message=success");
-            } elseif ($code == $zk_result['ZK_ID']) {
-                header("Location: meal_staff.php?message=success");
-            }
+        // Redirect based on role
+        if ($role_code == 'admin') {
+            header("Location: meal_ad.php?message=success");
+            exit();
+        } elseif ($role_code == 'staff') {  
+            header("Location: meal_staff.php?message=success");
+            exit();
+        } else {
+            echo "User role not recognized.";
         }
-        exit();
     } else {
-        // Display an error message
         echo "Error: " . $query . "<br>" . $mysqli->error;
-    }
+    } 
 }
 ?>
