@@ -7,6 +7,7 @@ if (!isset($_SESSION['ZK_ID'])) {
     exit();
 }
 $zookeeperID = $_SESSION['ZK_ID'];
+$_SESSION['role'] = 'staff';
 
 // Query to fetch zookeeper data
 $query = "SELECT * FROM ingredient";
@@ -76,7 +77,7 @@ $zookeeper = $result_zk->fetch_assoc();
                             <td>
                                 <a href='delete_in.php?In_ID={$row['In_ID']}' class='delete-button'>Delete</a>
                             </td>
-                          </tr>";
+                        </tr>";
                 }
             } else {
                 echo "<tr><td colspan='5'>No ingredients found.</td></tr>";
@@ -90,3 +91,4 @@ $zookeeper = $result_zk->fetch_assoc();
     </div>
 </body>
 </html>
+

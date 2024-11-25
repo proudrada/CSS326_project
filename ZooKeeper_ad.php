@@ -84,7 +84,7 @@ $admin = $result_admin->fetch_assoc();
 
                 echo "
                 <div class='card'>
-                    <a href='delete_zookeep.php?ZK_ID={$row['ZK_ID']}' class='close-btn' title='Close'>X</a> 
+                    <a href='delete_zookeep.php?ZK_ID={$row['ZK_ID']}' class='close-btn' title='Delete'>X</a> 
                     <img src='{$row['image_path']}' alt='{$row['ZKFName']}' class='profile-img'>
                     <h2>{$fullName}</h2>
                     <p>Zookeeper ID: <span contenteditable='true'>{$row['ZK_ID']}</span></p>

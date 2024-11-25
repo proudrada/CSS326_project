@@ -62,7 +62,7 @@ $admin = $result_admin->fetch_assoc();
                     <p>Habitat: <span contenteditable='true'>{$row['Habitat']}</span></p>
                     <p>Average temperature: <span contenteditable='true'>{$row['Avg_temp']}</span></p>
                     <p>Relative Humidity: <span contenteditable='true'>{$row['Relative_humidity']}%</span></p>
-                    <a href='#' class='edit-icon' title='Edit'>&#9998;</a>
+                    <a href='form_edit_zone.php?Zone_name={$row['Zone_name']}' class='edit-icon' title='Edit'>&#9998;</a>
                 </div>";
             }
         } else {
