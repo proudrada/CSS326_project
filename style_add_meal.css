@@ -52,6 +52,7 @@ form input[type="time"] {
 }
 
 /* Button styles */
+
 .buttons {
     display: flex;
     justify-content: space-between;

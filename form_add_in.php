@@ -63,11 +63,9 @@ if ($role == 'admin') {
 
             <label for="expiration_date">Expiration Date</label>
             <input type="date" id="expiration_date" name="expiration_date" required>
-
-        
-            <button type="submit" class="add-button">Add Ingredient</button>
         </form>
-        <div>
+        <div class = "BUTTON">
+            <button type="submit" class="add-button">Add Ingredient</button>
             <button type="button" onclick="window.location.href='<?php echo $redirect_url; ?>'" class="cancel-button">Cancel</button>
         </div>
     </div>

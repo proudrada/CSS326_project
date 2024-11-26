@@ -50,6 +50,10 @@ form input[type="date"] {
 }
 
 /* Button styles */
+.BUTTON{
+    display: flex;
+    justify-content: space-between;
+}
 .buttons {
     display: flex;
     justify-content: space-between;
@@ -64,6 +68,7 @@ form input[type="date"] {
     border-radius: 5px;
     cursor: pointer;
     transition: 0.3s ease;
+    /* flex: 0 0 45%; */
 }
 
 .cancel-button {
