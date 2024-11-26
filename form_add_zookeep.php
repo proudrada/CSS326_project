@@ -41,6 +41,9 @@
             <label for="dob">Date of Birth</label>
             <input type="date" id="dob" name="dob" required>
 
+            <label for="password">Password</label>
+            <input type="text" id="password" name="password" required>
+
             <div class="buttons">
                 <button type="submit" class="add-button">Add Zookeeper</button>
                 <button type="button" onclick="window.location.href='Zookeeper_ad.php'" class="cancel-button">Cancel</button>

@@ -9,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $z_date_of_birth = $mysqli->real_escape_string($_POST['dob']);
     $z_sex = $mysqli->real_escape_string($_POST['sex']);
     $salary = $mysqli->real_escape_string($_POST['salary']);
+    $zk_password = $mysqli->real_escape_string($_POST['password']);
 
     // Image upload handling
     if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] === 0) {
@@ -27,11 +28,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Prepare the SQL query
-    $stmt = $mysqli->prepare("INSERT INTO zookeeper (ZK_ID, ZKFName, ZKLName, ZDate_of_birth, ZSex, Salary, image_path) 
-                              VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $mysqli->prepare("INSERT INTO zookeeper (ZK_ID, ZKFName, ZKLName, ZDate_of_birth, ZSex, Salary, image_path, ZK_Password) 
+                              VALUES (?, ?, ?, ?, ?, ?, ?,?)");
 
     if ($stmt) {
-        $stmt->bind_param("sssssis", $zk_id, $zk_fname, $zk_lname, $z_date_of_birth, $z_sex, $salary, $image_path);
+        $stmt->bind_param("sssssiss", $zk_id, $zk_fname, $zk_lname, $z_date_of_birth, $z_sex, $salary, $image_path, $zk_password);
 
         if ($stmt->execute()) {
             // Redirect to zookeeper management page with success message
