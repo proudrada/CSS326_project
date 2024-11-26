@@ -1,5 +1,5 @@
 <?php
-require('connect.php'); // Include the database connection file to enable database interactions
+require('connect.php'); 
 
 // Initialize variables for popup functionality
 $message = "";
@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
         $showPopup = true;
     } else {
         // Check if the zookeeper is assigned to any animals
-        $stmt = $mysqli->prepare("SELECT COUNT(*) FROM animals WHERE ZK_ID = ?");
+        $stmt = $mysqli->prepare("SELECT COUNT(*) FROM animal WHERE ZK_ID = ?");
         if ($stmt) {
             $stmt->bind_param("s", $zk_id);
             $stmt->execute();
