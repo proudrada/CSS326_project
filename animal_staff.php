@@ -77,13 +77,13 @@ $zookeeper = $result_zk->fetch_assoc();
                 <div class='card'>
                     <img src='{$row['image_path']}' alt='{$row['name']}' class='profile-img'>
                     <h2>{$row['A_name']}</h2>
-                    <p>Animal ID: <span contenteditable='true'>{$row['A_ID']}</span></p>
-                    <p>Date of birth: <span contenteditable='true'>{$row['ADate_of_birth']}</span></p>
-                    <p>Species: <span contenteditable='true'>{$row['Species']}</span></p>
-                    <p>Sex: <span contenteditable='true'>{$row['A_Sex']}</span></p>
-                    <p>Zookeeper ID: <span contenteditable='true'>{$row['ZK_ID']}</span></p>
-                    <p>Age: <span contenteditable='true'>$age</span></p>
-                    <p>Zone: <span contenteditable='true'>{$row['Zone_name']}</span></p>
+                    <p>Animal ID: {$row['A_ID']}</p>
+                    <p>Date of birth: {$row['ADate_of_birth']}</p>
+                    <p>Species: {$row['Species']}</p>
+                    <p>Sex: {$row['A_Sex']}</p>
+                    <p>Zookeeper ID: {$row['ZK_ID']}</p>
+                    <p>Age: $age</p>
+                    <p>Zone: {$row['Zone_name']}</p>
                 </div>";
             }
         } else {

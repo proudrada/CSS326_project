@@ -25,9 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Handle image upload
     $image_path = $existing_row['image_path']; // Default to existing image
-    if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] === 0) {
-        $image_tmp_name = $_FILES['profile_image']['tmp_name'];
-        $image_extension = pathinfo($_FILES['profile_image']['name'], PATHINFO_EXTENSION);
+    if (isset($_FILES['animal_image']) && $_FILES['animal_image']['error'] === 0) {
+        $image_tmp_name = $_FILES['animal_image']['tmp_name'];
+        $image_extension = pathinfo($_FILES['animal_image']['name'], PATHINFO_EXTENSION);
         $image_path = 'img/' . $a_name . '.' . $image_extension;
 
         // Move the uploaded file to the designated folder

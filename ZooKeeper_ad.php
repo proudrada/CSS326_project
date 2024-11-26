@@ -87,12 +87,12 @@ $admin = $result_admin->fetch_assoc();
                     <a href='delete_zookeep.php?ZK_ID={$row['ZK_ID']}' class='close-btn' title='Delete'>X</a> 
                     <img src='{$row['image_path']}' alt='{$row['ZKFName']}' class='profile-img'>
                     <h2>{$fullName}</h2>
-                    <p>Zookeeper ID: <span contenteditable='true'>{$row['ZK_ID']}</span></p>
-                    <p>Date of birth: <span contenteditable='true'>{$row['ZDate_of_birth']}</span></p>
-                    <p>Sex: <span contenteditable='true'>{$row['ZSex']}</span></p>
-                    <p>Salary: <span contenteditable='true'>\${$row['Salary']}</span></p>
-                    <p>Animal ID(s): <span contenteditable='true'>{$animal_ids_str}</span></p>  <!-- Display Animal IDs -->
-                    <p>Age: <span contenteditable='true'>{$age}</span></p>
+                    <p>Zookeeper ID: {$row['ZK_ID']}</p>
+                    <p>Date of birth: {$row['ZDate_of_birth']}</p>
+                    <p>Sex: {$row['ZSex']}</p>
+                    <p>Salary: \${$row['Salary']}</p>
+                    <p>Animal ID(s): {$animal_ids_str}</p>  <!-- Display Animal IDs -->
+                    <p>Age: {$age}</p>
                     <a href='from_edit_zookeep.php?ZK_ID={$row['ZK_ID']}' class='edit-icon' title='Edit'>&#9998;</a>
                 </div>";
             }

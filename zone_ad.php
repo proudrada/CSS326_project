@@ -58,10 +58,10 @@ $admin = $result_admin->fetch_assoc();
                 <div class='card'>
                     <img src='{$row['image_path']}' alt='{$row['ZName']}' class='profile-img'>
                     <h2>{$row['Zone_name']}</h2>
-                    <p>Environment: <span contenteditable='true'>{$row['Environment']}</span></p>
-                    <p>Habitat: <span contenteditable='true'>{$row['Habitat']}</span></p>
-                    <p>Average temperature: <span contenteditable='true'>{$row['Avg_temp']}</span></p>
-                    <p>Relative Humidity: <span contenteditable='true'>{$row['Relative_humidity']}%</span></p>
+                    <p>Environment: {$row['Environment']}</p>
+                    <p>Habitat: {$row['Habitat']}</p>
+                    <p>Average temperature: {$row['Avg_temp']}</p>
+                    <p>Relative Humidity: {$row['Relative_humidity']}%</p>
                     <a href='form_edit_zone.php?Zone_name={$row['Zone_name']}' class='edit-icon' title='Edit'>&#9998;</a>
                 </div>";
             }
