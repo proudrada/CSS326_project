@@ -27,7 +27,7 @@
                 type="text" 
                 class="admin-input" 
                 name="id" 
-                placeholder="Admin/User ID" 
+                placeholder="Enter your ID" 
                 required
             >
             <input 
