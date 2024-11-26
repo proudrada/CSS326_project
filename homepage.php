@@ -15,7 +15,7 @@
     <?php
     // ตรวจสอบว่ามี error message จาก process.php หรือไม่
     if (isset($_GET['error']) && $_GET['error'] == "invalid") {
-        echo "<script>showAlert('Invalid Code! Please Try Again');</script>";
+        echo "<script>showAlert('Invalid ID or Password! Please Try Again');</script>";
     }
     ?>
 
@@ -26,8 +26,15 @@
             <input 
                 type="text" 
                 class="admin-input" 
-                name="code" 
+                name="id" 
                 placeholder="Admin/User ID" 
+                required
+            >
+            <input 
+                type="password" 
+                class="admin-input" 
+                name="password" 
+                placeholder="Password" 
                 required
             >
             <!-- ปุ่ม submit ซ่อน (กด Enter เพื่อส่งค่า) -->

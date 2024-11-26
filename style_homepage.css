@@ -25,6 +25,16 @@ body {
     padding: 10px;
     background-color: rgba(0, 0, 0, 0.6);
     border-radius: 20px;
+    width: fit-content;
+}
+form {
+    display: flex;
+    flex-direction: column; /* Stack input fields vertically */
+    align-items: center; /* Center align fields */
+    padding: 20px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 400px; /* Restrict form width */
 }
 .admin-input {
     /* position: absolute;

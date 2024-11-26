@@ -1,48 +1,49 @@
 <?php
+// Include the database connection file
 require_once('connect.php');
+
+// Start a session to manage user authentication
 session_start();
 
-// Receive the code from the form
+// Check if the form has been submitted using the POST method
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $code = trim($_POST['code']); // Trim white spaces
+    // Retrieve and sanitize user input
+    $id = trim($_POST['id']); // Get the user/admin ID from the form
+    $password = trim($_POST['password']); // Get the password from the form
 
-    // Check if the code is in the admin table
-    $query_ad = "SELECT Ad_ID FROM admin WHERE Ad_ID = ?";
-    $stmt_ad = $mysqli->prepare($query_ad);
-    $stmt_ad->bind_param("s", $code);
-    $stmt_ad->execute();
-    $result_ad = $stmt_ad->get_result();
+    // Step 1: Check if the user is an admin
+    $query_ad = "SELECT Ad_ID, Ad_Password FROM admin WHERE Ad_ID = ? AND Ad_Password = ?";
+    $stmt_ad = $mysqli->prepare($query_ad); // Prepare the SQL statement
+    $stmt_ad->bind_param("ss", $id, $password); // Bind user input to the query
+    $stmt_ad->execute(); // Execute the query
+    $result_ad = $stmt_ad->get_result(); // Get the result of the query
 
-    // Check if the code is in the zookeeper table
-    $query_zk = "SELECT ZK_ID FROM zookeeper WHERE ZK_ID = ?";
-    $stmt_zk = $mysqli->prepare($query_zk);
-    $stmt_zk->bind_param("s", $code);
-    $stmt_zk->execute();
-    $result_zk = $stmt_zk->get_result();
-
-    // If the code is found in the admin table
+    // If an admin account matches the provided ID and password
     if ($result_ad->num_rows > 0) {
-        $_SESSION['ADMIN_ID'] = $code; // Set session for admin
-        header("Location: ZooKeeper_ad.php?name=admin");
-        exit();
+        $_SESSION['ADMIN_ID'] = $id; // Set session variable for admin
+        header("Location: ZooKeeper_ad.php?name=admin"); // Redirect to the admin dashboard
+        exit(); // Stop further execution
     }
-    // If the code is found in the zookeeper table
-    elseif ($result_zk->num_rows > 0) {
-        $_SESSION['ZK_ID'] = $code; // Set session for zookeeper
-        header("Location: ZooKeeper_staff.php");
-        exit();
+
+    // Step 2: Check if the user is a zookeeper
+    $query_zk = "SELECT ZK_ID, ZK_Password FROM zookeeper WHERE ZK_ID = ? AND ZK_Password = ?";
+    $stmt_zk = $mysqli->prepare($query_zk); // Prepare the SQL statement
+    $stmt_zk->bind_param("ss", $id, $password); // Bind user input to the query
+    $stmt_zk->execute(); // Execute the query
+    $result_zk = $stmt_zk->get_result(); // Get the result of the query
+
+    // If a zookeeper account matches the provided ID and password
+    if ($result_zk->num_rows > 0) {
+        $_SESSION['ZK_ID'] = $id; // Set session variable for zookeeper
+        header("Location: ZooKeeper_staff.php"); // Redirect to the zookeeper dashboard
+        exit(); // Stop further execution
     }
-    // If the code is empty or not found
-    elseif (empty($code)) {
-        header("Location: homepage.php?error=invalid");
-        exit();
-    }
-    // If the code is invalid
-    else {
-        header("Location: homepage.php?error=invalid");
-        exit();
-    }
+
+    // Step 3: If neither admin nor zookeeper credentials match
+    header("Location: homepage.php?error=invalid"); // Redirect back to homepage with an error
+    exit(); // Stop further execution
 } else {
+    // If the request method is not POST, output a message
     echo "No data submitted.";
 }
 ?>
