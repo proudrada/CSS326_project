@@ -63,6 +63,7 @@ $mysqli->close();
         <div class="staff-dropdown">
             <button class="staff-btn"><?= $zookeeper['staff _name']; ?>▼</button>
                 <div class="dropdown-content">
+                    <a href="reset.php">Reset Password</a>
                     <a href="homepage.php">Log-out</a>
                 </div>
         </div>

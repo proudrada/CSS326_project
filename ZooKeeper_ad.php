@@ -35,8 +35,9 @@ $admin = $result_admin->fetch_assoc();
         <div class="admin-dropdown">
             <button class="admin-btn"><?= $admin['Ad_name']; ?>▼</button>
             <div class="dropdown-content">
-                <a href="homepage.php">Log-out</a>
                 <a href="reset.php">Reset Password</a>
+                <a href="homepage.php">Log-out</a>
+                
             </div>
         </div>
     </nav>

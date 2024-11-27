@@ -43,8 +43,9 @@ $zookeeper = $result_zk->fetch_assoc();
         <div class="admin-dropdown">
             <button class="admin-btn"><?= $zookeeper['ZKFName'] . "_" . $zookeeper['ZK_ID'];?>▼</button>
             <div class="dropdown-content">
-                <a href="homepage.php">Log-out</a>
                 <a href="reset.php">Reset Password</a>
+                <a href="homepage.php">Log-out</a>
+                
             </div>
         </div>
     </nav>

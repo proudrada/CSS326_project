@@ -51,8 +51,9 @@ $animal_ids_str = implode(', ', $animal_ids);  // Convert array to comma-separat
         <div class="admin-dropdown">
             <button class="admin-btn"><?= $zookeeper['ZKFName'] . "_" . $zookeeper['ZK_ID']; ?>▼</button>
             <div class="dropdown-content">
-                <a href="homepage.php">Log-out</a>
                 <a href="reset.php">Reset Password</a>
+                <a href="homepage.php">Log-out</a>
+                
             </div>
         </div>
     </nav>
