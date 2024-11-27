@@ -53,7 +53,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
             $error_message = "Error updating password."; // Handle database update error
             }
-        }
         } elseif ($role == 'staff') {
             $update_query = $mysqli->query("UPDATE zookeeper SET ZK_Password = '$hashed_password' WHERE ZK_ID = '$code'");
             if ($update_query) {
