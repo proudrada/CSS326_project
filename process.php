@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $admin = $result_ad->fetch_assoc();
         
         // Compare plain-text password (not recommended; consider hashing)
-        if ($password === $admin['Ad_Password']) {
+        if (password_verify($password, $admin['Ad_Password'])) {
             $_SESSION['ADMIN_ID'] = $id;  // Store the admin ID in the session
             header("Location: ZooKeeper_ad.php?name=admin"); // Redirect to the admin dashboard
             exit(); // Stop further execution

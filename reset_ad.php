@@ -5,35 +5,28 @@ session_start();
 // Include the database connection file
 require_once('connect.php');
 
-// Get the logged-in Admin's ID from the session
-$code = $_SESSION['Ad_ID'];
-$_SESSION['role'] = $_GET['role'];
-$head = '';
+// Check if Ad_ID is set in the session
+$code = $_SESSION['ADMIN_ID'] ?? null;
+if (!$code) {
+    die("Ad_ID is not set in the session."); // Handle missing Ad_ID
+}
 
 // Fetch the Admin's details from the database using their ID
-$ad_query = $mysqli->query("SELECT * FROM admin WHERE Ad_ID = '$code'");
-$admin = $ad_query->fetch_assoc(); // Convert the result to an associative array
+$ad_query = $mysqli->prepare("SELECT * FROM admin WHERE Ad_ID = ?");
+$ad_query->bind_param("s", $code);
+$ad_query->execute();
+$admin_result = $ad_query->get_result();
+$admin = $admin_result->fetch_assoc();
 
-// Handle the cancel button logic
-if (isset($_POST['cancel'])) {
-    // Fetch admin details again in case the session data has changed
-    $ad_query = $mysqli->query("SELECT * FROM admin WHERE Ad_ID = '$code'");
-    $admin = $ad_query->fetch_assoc(); // Ensure the admin data is updated
-
-    if ($ad_query && $ad_query->num_rows > 0) {
-        header("Location: ZooKeeper_ad.php");
-    } else {
-        $head = 'default_page.php';
-        header("Location: homepage.php");
-    }
-    $_SESSION['head'] = $head;
+if (!$admin) {
+    die("Admin record not found."); // Handle missing admin record
 }
 
 // Handle the form submission for resetting the password
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve the new password and confirmation password from the form
-    $password = $_POST['password'];
-    $confirm_password = $_POST['confirm_password'];
+    $password = $_POST['password'] ?? '';
+    $confirm_password = $_POST['confirm_password'] ?? '';
 
     // Check if the two entered passwords match
     if ($password === $confirm_password) {
@@ -41,10 +34,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
         // Update the password in the database for the current Admin
-        $update_query = $mysqli->query("UPDATE admin SET Ad_Password = '$hashed_password' WHERE Ad_ID = '$code'");
+        $update_query = $mysqli->prepare("UPDATE admin SET Ad_Password = ? WHERE Ad_ID = ?");
+        $update_query->bind_param("ss", $hashed_password, $code);
 
-        // Check if the update was successful
-        if ($update_query) {
+        if ($update_query->execute()) {
             $success_message = "Password updated successfully!";
         } else {
             $error_message = "Error updating password."; // Handle database update error
@@ -54,8 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Determine the redirect URL based on the user's role (admin or staff)
-$role = $_GET['role'];
+// Determine the redirect URL for the cancel button
 $redirect_url = 'homepage.php';
 ?>
 
@@ -90,7 +82,7 @@ $redirect_url = 'homepage.php';
             <input type="password" id="confirm_password" name="confirm_password" required>
             
             <!-- Buttons to submit the form or cancel and go back -->
-            <div class="BUTTON">
+            <div class="buttons">
                 <button type="submit" class="add-button">Reset Password</button>
                 <button type="button" onclick="window.location.href='<?= $redirect_url; ?>'" class="cancel-button">Cancel</button>
             </div>

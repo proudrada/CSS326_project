@@ -99,7 +99,7 @@ if ($role == 'admin') {
             <input type="password" id="confirm_password" name="confirm_password" required>
             
             <!-- Buttons to submit the form or cancel and go back -->
-            <div class="BUTTON">
+            <div class="buttons">
                 <button type="submit" class="add-button">Reset Password</button>
                 <button type="button" onclick="window.location.href='<?= $redirect_url; ?>'" class="cancel-button">Cancel</button>
             </div>
