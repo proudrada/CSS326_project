@@ -5,26 +5,23 @@ session_start();
 // Include the database connection file
 require_once('connect.php');
 
-// Get the logged-in Zookeeper's ID from the session
-$code = $_SESSION['ZK_ID'];
+// Get the logged-in Admin's ID from the session
+$code = $_SESSION['Ad_ID'];
 $_SESSION['role'] = $_GET['role'];
 $head = '';
 
-// Fetch the Zookeeper's details from the database using their ID
-$zk_query = $mysqli->query("SELECT * FROM zookeeper WHERE ZK_ID = '$code'");
-$zookeeper = $zk_query->fetch_assoc(); // Convert the result to an associative array
+// Fetch the Admin's details from the database using their ID
+$ad_query = $mysqli->query("SELECT * FROM admin WHERE Ad_ID = '$code'");
+$admin = $ad_query->fetch_assoc(); // Convert the result to an associative array
 
 // Handle the cancel button logic
 if (isset($_POST['cancel'])) {
+    // Fetch admin details again in case the session data has changed
     $ad_query = $mysqli->query("SELECT * FROM admin WHERE Ad_ID = '$code'");
-    $zk_query = $mysqli->query("SELECT * FROM zookeeper WHERE ZK_ID = '$code'");
-    $zookeeper = $zk_query->fetch_assoc();
+    $admin = $ad_query->fetch_assoc(); // Ensure the admin data is updated
 
     if ($ad_query && $ad_query->num_rows > 0) {
         header("Location: ZooKeeper_ad.php");
-    } elseif ($zk_query && $zk_query->num_rows > 0) {
-        $head = 'ZooKeeper_staff.php';
-        header("Location: ZooKeeper_staff.php");
     } else {
         $head = 'default_page.php';
         header("Location: homepage.php");
@@ -43,8 +40,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Hash the new password securely before storing it in the database
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-        // Update the password in the database for the current Zookeeper
-        $update_query = $mysqli->query("UPDATE zookeeper SET ZK_password = '$hashed_password' WHERE ZK_ID = '$code'");
+        // Update the password in the database for the current Admin
+        $update_query = $mysqli->query("UPDATE admin SET Ad_Password = '$hashed_password' WHERE Ad_ID = '$code'");
 
         // Check if the update was successful
         if ($update_query) {
@@ -60,12 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Determine the redirect URL based on the user's role (admin or staff)
 $role = $_GET['role'];
 $redirect_url = 'homepage.php';
-
-if ($role == 'admin') {
-    $redirect_url = 'ZooKeeper_ad.php';
-} elseif ($role == 'staff') {
-    $redirect_url = 'ZooKeeper_staff.php';
-}
 ?>
 
 <!DOCTYPE html>
@@ -86,9 +77,9 @@ if ($role == 'admin') {
         
         <!-- Form for resetting the password -->
         <form action="" method="POST">
-            <!-- Display the Zookeeper's ID (read-only) -->
-            <label for="zk_id">ID</label>
-            <input type="text" id="zk_id" name="zk_id" value="<?= htmlspecialchars($zookeeper['ZK_ID']) ?>" readonly>
+            <!-- Display the Admin's ID (read-only) -->
+            <label for="ad_id">Admin ID</label>
+            <input type="text" id="ad_id" name="ad_id" value="<?= htmlspecialchars($admin['Ad_ID']) ?>" readonly>
 
             <!-- Input field for the new password -->
             <label for="password">Password</label>

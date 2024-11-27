@@ -11,7 +11,7 @@ $_SESSION['role'] = 'staff';
 
 // Query to fetch zookeeper data
 $query = "SELECT * FROM ingredient";
-$query_zk = "SELECT * FROM zookeeper";
+$query_zk = "SELECT * FROM zookeeper WHERE ZK_ID = '$zookeeperID'";
 $result = $mysqli->query($query);
 // Check if query execution was successful
 if (!$result) {
