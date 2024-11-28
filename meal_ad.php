@@ -78,7 +78,7 @@ $admin = $result_admin->fetch_assoc();
                           </tr>";
                 }
             } else {
-                echo "<tr><td colspan='5'>No ingredients found.</td></tr>";
+                echo "<tr><td colspan='5'>No meals found.</td></tr>";
             }
             ?>
         </table>
