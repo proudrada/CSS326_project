@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $z_date_of_birth = $mysqli->real_escape_string($_POST['dob']);
     $z_sex = $mysqli->real_escape_string($_POST['sex']);
     $salary = $mysqli->real_escape_string($_POST['salary']);
+    $zk_email = $mysqli->real_escape_string($_POST['email']);
 
     // Check if the zookeeper exists
     $result = $mysqli->query("SELECT * FROM zookeeper WHERE ZK_ID = '$zk_id'");
@@ -38,9 +39,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Update existing record
     $stmt = $mysqli->prepare(
-        "UPDATE zookeeper SET ZKFName=?, ZKLName=?, ZDate_of_birth=?, ZSex=?, Salary=?, image_path=? WHERE ZK_ID=?"
+        "UPDATE zookeeper SET ZKFName=?, ZKLName=?, ZDate_of_birth=?, ZSex=?, Salary=?, image_path=?, zk_email=? WHERE ZK_ID=?"
     );
-    $stmt->bind_param("ssssiss", $zk_fname, $zk_lname, $z_date_of_birth, $z_sex, $salary, $image_path, $zk_id);
+    $stmt->bind_param("ssssisss", $zk_fname, $zk_lname, $z_date_of_birth, $z_sex, $salary, $image_path, $zk_id, $email);
 
     // Execute the query
     if ($stmt && $stmt->execute()) {

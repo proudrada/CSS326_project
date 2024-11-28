@@ -38,7 +38,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $update_query->bind_param("ss", $hashed_password, $code);
 
         if ($update_query->execute()) {
-            $success_message = "Password updated successfully!";
+            // Redirect to homepage.php after a successful password update
+            header("Location: homepage.php");
+            exit(); // Ensure no further code execution
         } else {
             $error_message = "Error updating password."; // Handle database update error
         }
@@ -83,8 +85,8 @@ $redirect_url = 'homepage.php';
             
             <!-- Buttons to submit the form or cancel and go back -->
             <div class="buttons">
-                <button type="submit" class="add-button">Reset Password</button>
-                <button type="button" onclick="window.location.href='<?= $redirect_url; ?>'" class="cancel-button">Cancel</button>
+            <button type="submit" class="add-button">Reset Password</button>
+            <button type="button" onclick="window.location.href='Zookeeper_ad.php'" class="cancel-button">Cancel</button>
             </div>
         </form>
     </div>

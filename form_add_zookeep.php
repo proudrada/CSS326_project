@@ -27,6 +27,9 @@
             <label for="zookeeper_id">Zookeeper ID</label>
             <input type="text" id="zookeeper_id" name="zookeeper_id" required>
 
+            <label for="zookeeper_email">Zookeeper Email</label>
+            <input type="email" id="zookeeper_email" name="zookeeper_email" required>
+
             <label>Sex</label>
             <div class="radio-group">
                 <input type="radio" id="male" name="sex" value="Male" required>

@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $z_sex = $mysqli->real_escape_string($_POST['sex']);
     $salary = $mysqli->real_escape_string($_POST['salary']);
     $zk_password = $mysqli->real_escape_string($_POST['password']);
+    $zk_email = $mysqli->real_escape_string($_POST['email']);
 
     // Hash the password before storing it to ensure secure storage
     $hashed_password = password_hash($zk_password, PASSWORD_DEFAULT);
@@ -37,13 +38,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Prepare the SQL query to insert the new zookeeper details into the database
-    $stmt = $mysqli->prepare("INSERT INTO zookeeper (ZK_ID, ZKFName, ZKLName, ZDate_of_birth, ZSex, Salary, image_path, ZK_Password) 
-                              VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $mysqli->prepare("INSERT INTO zookeeper (ZK_ID, ZKFName, ZKLName, ZDate_of_birth, ZSex, Salary, image_path, ZK_Password, zk_email) 
+                              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
     // Check if the prepared statement was successful
     if ($stmt) {
         // Bind the form data to the prepared statement, including the hashed password
-        $stmt->bind_param("sssssiss", $zk_id, $zk_fname, $zk_lname, $z_date_of_birth, $z_sex, $salary, $image_path, $hashed_password);
+        $stmt->bind_param("sssssisss", $zk_id, $zk_fname, $zk_lname, $z_date_of_birth, $z_sex, $salary, $image_path, $hashed_password, $zk_email);
 
         // Execute the prepared statement and check if the query was successful
         if ($stmt->execute()) {

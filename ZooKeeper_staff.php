@@ -72,6 +72,7 @@ $animal_ids_str = implode(', ', $animal_ids);  // Convert array to comma-separat
                 <h1>Welcome! <?= $zookeeper['ZKFName'] . " " . $zookeeper['ZKLName']; ?></h1>              
                 <div class = "profile-info">
                     <p>Zookeeper ID: <?= ($zookeeper['ZK_ID']); ?></p>
+                    <p>Zookeeper Email: <?= ($zookeeper['zk_email']); ?></p>
                     <p>Date of birth: <?= ($zookeeper['ZDate_of_birth']); ?></p>
                     <p>Sex: <?= ($zookeeper['ZSex']); ?></p>
                     <p>Salary: $<?= number_format($zookeeper['Salary']); ?></p>

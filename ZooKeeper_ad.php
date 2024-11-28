@@ -90,6 +90,7 @@ $admin = $result_admin->fetch_assoc();
                     <img src='{$row['image_path']}' alt='{$row['ZKFName']}' class='profile-img'>
                     <h2>{$fullName}</h2>
                     <p>Zookeeper ID: {$row['ZK_ID']}</p>
+                    <p>Zookeeper Email: {$row['zk_email']}</p>
                     <p>Date of birth: {$row['ZDate_of_birth']}</p>
                     <p>Sex: {$row['ZSex']}</p>
                     <p>Salary: \${$row['Salary']}</p>
