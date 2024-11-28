@@ -52,8 +52,8 @@ if (isset($_GET['ZK_ID'])) {
             <label for="zookeeper_id">Zookeeper ID</label>
             <input type="text" id="zookeeper_id" name="zookeeper_id" value="<?= htmlspecialchars($zookeeper['ZK_ID']) ?>" readonly>
 
-            <label for="zookeeper_email">Zookeeper Email</label>
-            <input type="email" id="zookeeper_email" name="zookeeper_email" value="<?= htmlspecialchars($zookeeper['zk_email']) ?>" required>
+            <label for="zk_email">Zookeeper Email</label>
+            <input type="email" id="zk_email" name="zk_email" value="<?= htmlspecialchars($zookeeper['zk_email']) ?>" required>
 
             <label>Sex</label>
             <div class="radio-group">

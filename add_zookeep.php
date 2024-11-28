@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $z_sex = $mysqli->real_escape_string($_POST['sex']);
     $salary = $mysqli->real_escape_string($_POST['salary']);
     $zk_password = $mysqli->real_escape_string($_POST['password']);
-    $zk_email = $mysqli->real_escape_string($_POST['email']);
+    $zk_email = $mysqli->real_escape_string($_POST['zk_email']);
 
     // Hash the password before storing it to ensure secure storage
     $hashed_password = password_hash($zk_password, PASSWORD_DEFAULT);
