@@ -33,7 +33,7 @@ if (isset($_GET['Zone_name'])) {
 </head>
 <body>
     <div class="container">
-        <h1>Edit Zookeeper</h1>
+        <h1>Edit Zone</h1>
         <form action="edit_zone.php" method="POST" enctype="multipart/form-data">
             <div class="profile-image">
                 <label for="profile_image" class="image-upload-label">

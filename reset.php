@@ -87,7 +87,7 @@ if ($role == 'admin') {
         <!-- Form for resetting the password -->
         <form action="" method="POST">
             <!-- Display the Zookeeper's ID (read-only) -->
-            <label for="zk_id">ID</label>
+            <label for="zk_id">Zookeeper ID</label>
             <input type="text" id="zk_id" name="zk_id" value="<?= htmlspecialchars($zookeeper['ZK_ID']) ?>" readonly>
 
             <!-- Input field for the new password -->
